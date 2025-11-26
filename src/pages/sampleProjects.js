@@ -40,85 +40,148 @@ import bedroom1 from "../assets/Interiors/BEDROOM 1-2.jpg";
 import bedroom2 from "../assets/Interiors/BEDROOM 2-1.jpg";
 import bedroom3 from "../assets/Interiors/BEDROOM 2-2.jpg";
 
+import bathRoom1 from "../assets/Interiors/BATH1.png";
+import bathRoom2 from "../assets/Interiors/BATH 2 .jpg";
+
 import vedaHero from "../assets/exhibition/RENDER 1.jpg";
 import veda1 from "../assets/exhibition/RENDER 2.jpg";
 import veda2 from "../assets/exhibition/RENDER 3.jpg";
 import veda3 from "../assets/exhibition/RENDER 4.jpg";
 import veda4 from "../assets/exhibition/RENDER 5.jpg";
+import veda5 from "../assets/exhibition/RENDER 6.jpg";
+
+import gujarat1 from "../assets/exhibition/gujarat/GUJARAT 1.jpg";
+import gujarat2 from "../assets/exhibition/gujarat/GUJARAT 2.jpg";
+import gujarat3 from "../assets/exhibition/gujarat/GUJARAT 3.jpg";
+
+import irs1 from "../assets/exhibition/irs/IRS 1.jpg";
+import irs2 from "../assets/exhibition/irs/IRS 2.jpg";
+import irs3 from "../assets/exhibition/irs/IRS 3.jpg";
+
+/**
+ * SAMPLE_PROJECTS
+ * - Interiors groups living/kitchen/bedroom as categories inside a single project.
+ * - Residentials groups Dehradun & Kannur as categories inside one project, so carousel shows "Residentials" and Project page shows those categories.
+ * - Healthcare, Landscape, Exhibition remain as separate projects.
+ */
 
 const SAMPLE_PROJECTS = [
+  // Interiors: single project with categories
   {
-    id: 101,
-    title: "Dehradun Residence",
-    type: "Residential",
-    location: "Dehradun, UP",
-    siteArea: "450 sqm",
-    builtUpArea: "395 sqm",
-    areaSqft: "4200 sq ft",
-    status: "On going",
-    year: "2025",
-    client: "Private",
+    id: 201,
+    title: "Interiors",
+    type: "Interior Collections",
+    hero: livingHero,
+    leadin:
+      "Interior design collections — Living, Kitchen, Bedroom, Bar Lounge and Bathroom.",
+    description:
+      "A grouped collection of interior projects showcasing curated spaces: living room, kitchen, bedroom, bar lounge, and bathroom suites with focused design intent.",
+    gallery: [livingHero, kitchenHero, bedroomHero],
+    tags: ["Interiors", "Residential Interiors"],
+
+    categories: [
+      {
+        slug: "living-room",
+        label: "Living Room",
+        title: "Living Room",
+        short: "Spacious living area with layered lighting and warm materials.",
+        thumb: living2,
+        images: [living2, living3, living4],
+      },
+
+      {
+        slug: "kitchen",
+        label: "Kitchen",
+        title: "Kitchen",
+        short:
+          "Open-plan island kitchen with custom storage and clean finishes.",
+        thumb: kitchen1,
+        images: [kitchen1, kitchen2, kitchen3],
+      },
+
+      {
+        slug: "bedroom-suite",
+        label: "Bedroom Suite",
+        title: "Bedroom Suite",
+        short: "Serene bedroom with layered textures and concealed storage.",
+        thumb: bedroom1,
+        images: [bedroom1, bedroom2, bedroom3],
+      },
+
+      {
+        slug: "bar-lounge",
+        label: "Bar Lounge",
+        title: "Bar Lounge",
+        short: "A compact, moody bar lounge with layered ambient lighting.",
+        thumb: livingHero, // You can replace with a dedicated bar lounge thumb
+        images: [livingHero, living1], // Replace with exact bar images if you have
+      },
+
+      {
+        slug: "bathroom",
+        label: "Bathroom",
+        title: "Bathroom",
+        short:
+          "Modern bathroom with clean finishes and ambient lighting design.",
+        thumb: bathRoom1, // TEMP placeholder — replace with real bathroom thumb
+        images: [bathRoom1, bathRoom2], // TEMP placeholder images — replace with real bathroom set
+      },
+    ],
+  },
+
+  // Residentials: grouped residences as categories
+  {
+    id: 202,
+    title: "Residentials",
+    type: "Residential Collection",
     hero: dehradunHero,
     leadin:
-      "A warm, intimate family home that embraces Dehradun’s pleasant climate through strong indoor–outdoor connections.",
+      "Collection of residential projects — individual houses combined under a single project group.",
     description:
-      "Located in the picturesque city of Dehradun, this residence is conceived as a sanctuary for family life — balancing privacy with generous outdoor connections. The design prioritizes natural light and cross-ventilation while respecting Vastu principles.",
-    detailParagraph:
-      "The ground floor accommodates a double-height living area, formal drawing room, master suite, guest bedroom, and an open kitchen-dining zone that visually connects to the outdoors. The upper level houses a home office, gym, bar lounge, terrace, and an additional bedroom — creating a balanced blend of leisure, work, and repose.",
-    moreDescription:
-      "Landscape design is integral: a composed balance of hardscape and softscape forms the outdoor environment, with dense perimeter planting creating a green buffer that enhances privacy and a calm visual enclosure.",
-    gallery: [dehradunHero, dehradun1, dehradun2, dehradun3, dehradun4],
-    featureImg: dehradun1,
-    featureImg2: dehradun2,
-    tags: ["Vastu", "Private Residence", "Indoor–Outdoor"],
+      "Grouped residential projects where each house becomes a category. Use this view to pick a residence and dive into its gallery and details.",
+    gallery: [dehradunHero, kannurHero],
+    tags: ["Residentials", "Private Homes"],
+    categories: [
+      {
+        slug: "dehradun-residence",
+        label: "Dehradun Residence",
+        title: "Dehradun Residence",
+        short:
+          "A warm family home using indoor–outdoor connections and Vastu-informed planning.",
+        thumb: dehradun1,
+        images: [dehradunHero, dehradun1, dehradun2, dehradun3, dehradun4],
+        meta: {
+          location: "Dehradun",
+          year: "2025",
+          status: "On going",
+        },
+      },
+      {
+        slug: "kannur-house",
+        label: "Kannur House",
+        title: "Kannur House",
+        short: "3-BHK duplex blending minimal modern aesthetics and function.",
+        thumb: kannur1,
+        images: [kannurHero, kannur1, kannur2, kannur3],
+        meta: {
+          location: "Kannur",
+          year: "2024",
+          status: "On going",
+        },
+      },
+    ],
   },
 
+  // Healthcare: single project
   {
-    id: 102,
-    title: "Kannur House",
-    type: "Residential",
-    location: "Kannur, Kerala",
-    siteArea: "330 sqm",
-    builtUpArea: "195 sqm",
-    areaSqft: "2000 sq ft",
-    status: "On going",
-    year: "2024",
-    client: "Private",
-    hero: kannurHero,
-    leadin:
-      "A 3-BHK duplex that blends minimal modern aesthetics with practical, Vastu-informed planning.",
-    description:
-      "The Kannur project is a 3BHK duplex planned around an open central zone that integrates living, dining and kitchen areas. The layout creates a flexible, well-lit central space aided by a double-height living room with tall windows.",
-    detailParagraph:
-      "The ground floor includes a master suite with walk-in closet, guest bedroom and an open central area. The first floor provides a private drawing room, second master bedroom, terraces and utility spaces. The façade uses textured stone with horizontal and vertical grooves and a sloping roof for rainwater drainage.",
-    moreDescription:
-      "Extensive glazing and careful orientation balance direct and indirect sunlight throughout the day, creating bright, comfortable interiors while maintaining privacy where needed. Use of local materials and restrained detailing emphasizes craft and durability.",
-    gallery: [kannurHero, kannur3, kannur1, kannur2],
-    featureImg: kannur1,
-    featureImg2: kannur2,
-    tags: ["Vastu", "Duplex", "Minimal Facade"],
-  },
-
-  {
-    id: 103,
+    id: 301,
     title: "Maheshwari Hospital",
     type: "Healthcare",
-    location: "Bisauli, UP",
-    siteArea: "30,000 sq ft",
-    builtUpArea: "30,000 sq ft",
-    areaSqft: "30,000 sq ft",
-    status: "Under Construction",
-    year: "2025",
-    client: "Maheshwari Hospital",
     hero: hospitalHero,
     leadin:
-      "Expansion and modernization of an existing hospital campus to enhance capacity, clinical services and long-term sustainability.",
+      "Expansion and modernization of an existing hospital campus to enhance capacity and services.",
     description:
-      "Maheshwari Hospital’s Phase 2 expands an existing 20,000 sq ft facility to introduce specialized medical facilities and increase bed capacity. The scheme is planned across four floors (including a basement) to improve patient flow and clinical adjacency.",
-    detailParagraph:
-      "The ground floor focuses on high-volume outpatient (OPD) operations and emergency services. The first and second floors accommodate IPD wards, private rooms, NICUs, operating theatres and pediatric care. Planning follows Vastu principles to support patient wellbeing and staff efficiency.",
-    moreDescription:
-      "Sustainability features include passive cooling strategies, rainwater harvesting pits, Sewage Treatment Plant (STP) for reuse, and rooftop/open-area solar installations. The campus is designed for operational efficiency and fire-safety compliance.",
+      "Healthcare masterplan and interior fit-outs focused on patient flow, staff-efficiency, and sustainability strategies.",
     gallery: [
       hospitalHero,
       hospital1,
@@ -128,135 +191,96 @@ const SAMPLE_PROJECTS = [
       hospital5,
       hospital6,
     ],
-    featureImg: hospital3,
-    featureImg2: hospital4,
-    tags: ["Hospital", "Sustainability", "Healthcare Masterplan"],
+    tags: ["Hospital", "Healthcare"],
+    categories: [], // no internal categories for now; Project page can show gallery or details
   },
 
+  // Landscape
   {
-    id: 104,
-    title: "Public / Private Garden",
+    id: 401,
+    title: "Landscape",
     type: "Landscape",
-    location: "Unknown (Client provided imagery only)",
-    siteArea: "—",
-    builtUpArea: "—",
-    status: "Design",
-    year: "2025",
-    client: "Client (imagery-only)",
     hero: landscapeHero,
-    leadin:
-      "Conceptual landscape composition focused on calm public/private outdoor spaces.",
+    leadin: "Landscape compositions for public & private outdoor spaces.",
     description:
-      "A small landscape package intended to complement multiple project types — courtyard, entry garden or public pocket park. The brief promotes native planting, water-sensitive design and a balanced hardscape-softscape composition.",
-    detailParagraph:
-      "This entry is a placeholder for a landscape design package; client provided image(s) only. Use this slot to attach the final planting plan, sections, or 3D imagery as they become available.",
-    moreDescription:
-      "Design intent: create a layered planting strategy with seating nodes, shaded walkways, and low-maintenance material choices that integrate with building edges and patios.",
+      "Conceptual landscape projects focusing on planting, circulation and low-maintenance materials.",
     gallery: [landscapeHero, landscape1, landscape2, landscape3],
-    featureImg: landscape1,
-    featureImg2: landscape2,
-    tags: ["Landscape", "Planting", "Public Space"],
-  },
-  {
-    id: 201,
-    title: "Modern Living Room Design",
-    type: "Interior",
-    location: "Noida, Uttar Pradesh",
-    siteArea: "120 sqm",
-    builtUpArea: "105 sqm",
-    areaSqft: "1130 sq ft",
-    status: "Completed",
-    year: "2024",
-    client: "Private Client",
-    hero: livingHero,
-    leadin:
-      "A warm and welcoming living area crafted with rich textures, earthy tones, and refined lighting for a cozy modern ambiance.",
-    description:
-      "The living space was designed as a contemporary retreat balancing comfort and elegance. Subtle contrasts in materials, warm accent lighting, and clean-lined furniture define a serene and balanced environment.",
-    detailParagraph:
-      "A layered lighting concept combines ambient, task, and accent sources to highlight textures and enhance spatial depth. Natural materials like wood veneer and stone cladding add warmth, while plush fabrics bring tactile softness.",
-    moreDescription:
-      "Designed for both everyday comfort and intimate gatherings, this living space embraces timeless design sensibilities — calm, elegant, and effortlessly functional.",
-    gallery: [livingHero, living1, living2, living3, living4],
-    featureImg: living1,
-    featureImg2: living2,
-    tags: ["Living Room", "Warm Palette", "Modern Comfort"],
-  },
-  {
-    id: 203,
-    title: "Luxury Bedroom Suite",
-    type: "Interior",
-    location: "Bangalore, Karnataka",
-    siteArea: "150 sqm",
-    builtUpArea: "130 sqm",
-    areaSqft: "1400 sq ft",
-    status: "Completed",
-    year: "2025",
-    client: "Private Client",
-    hero: bedroomHero,
-    leadin:
-      "An elegant master suite defined by muted tones, plush finishes, and a soothing palette for complete relaxation.",
-    description:
-      "This bedroom suite integrates comfort and sophistication. A soft material palette, hidden lighting, and clean geometry create a sense of calm luxury.",
-    detailParagraph:
-      "The centerpiece bed is framed by textured wall panels and subtle metallic trims. Wooden flooring complements the neutral tones, while soft drapes filter daylight for a serene mood.",
-    moreDescription:
-      "Functionality meets aesthetic refinement — concealed storage, acoustic finishes, and bespoke furniture enhance the usability and mood of the space.",
-    gallery: [bedroomHero, bedroom1, bedroom2, bedroom3],
-    featureImg: bedroom1,
-    featureImg2: bedroom2,
-    tags: ["Bedroom", "Luxury Interiors", "Warm Minimalism"],
+    tags: ["Landscape", "Planting"],
+    categories: [], // single project gallery
   },
 
+  // Exhibition: VEDA (keeps categories inside)
   {
-    id: 202,
-    title: " Kitchen Space",
-    type: "Interior",
-    location: "Gurgaon, Haryana",
-    siteArea: "80 sqm",
-    builtUpArea: "70 sqm",
-    areaSqft: "750 sq ft",
-    status: "Completed",
-    year: "2024",
-    client: "Private Residence",
-    hero: kitchenHero,
-    leadin:
-      "A sleek modular kitchen designed to integrate functionality and form with minimalist precision and soft natural tones.",
-    description:
-      "The kitchen combines refined finishes, seamless storage, and efficient ergonomics to create an elegant yet highly functional cooking environment.",
-    detailParagraph:
-      "The layout features an island counter that doubles as a breakfast space. Integrated appliances, quartz counters, and ambient cove lighting emphasize sleekness and practicality.",
-    moreDescription:
-      "A neutral color palette of beige, white, and walnut finishes creates visual continuity. Every cabinet and drawer is customized for clutter-free operation and durability.",
-    gallery: [kitchenHero, kitchen1, kitchen2, kitchen3],
-    featureImg: kitchen1,
-    featureImg2: kitchen2,
-    tags: ["Kitchen", "Minimal Design", "Modular Space"],
-  },
-  {
-    id: 205,
-    title: "VEDA DEFENCE SYSTEM",
+    id: 501,
+    title: "Exhibitions & Events",
     type: "Exhibition Design",
-    location: "New Delhi",
-    siteArea: "250 sqm",
-    builtUpArea: "220 sqm",
-    areaSqft: "2360 sq ft",
-    status: "Completed",
-    year: "2025",
-    client: "VEDA Defence Systems Pvt. Ltd.",
     hero: vedaHero,
-    leadin:
-      "A bold and immersive exhibition booth design for a defence technology brand — blending precision, identity, and storytelling.",
+
+    // FULL client-provided description moved here
+    leadin: `We create immersive brand spaces and impactful event experiences that combine creativity, precision, and seamless execution.
+
+Though our company is young, our core team brings over two decades of professional expertise in exhibition design, event production, and conference management, having successfully delivered prestigious projects for leading corporates, ministries, and global brands.
+
+From concept to completion, we take complete ownership of every detail — conceptualization, design, fabrication, installation, and on-site execution — ensuring uncompromised quality, professional coordination, timely delivery, and value within your budget.
+
+We proudly design and execute projects as per your vision and within your budget, anywhere in India or abroad.
+
+What drives us forward is the trust and confidence of our clients, who appreciate our professional approach, creative excellence, and commitment to delivering perfection every single time.`,
+
+    // You can optionally keep description short or leave it blank
     description:
-      "The VEDA Defence System exhibition booth was conceived as a dynamic spatial experience that visually reflects technological strength and innovation. The design language draws from angular geometries and layered light.",
-    detailParagraph:
-      "The pavilion uses a modular structure to accommodate displays, demo zones, and client meeting areas. Integrated LED lighting outlines the form, reinforcing the brand's futuristic tone.",
-    moreDescription:
-      "Strategic lighting, dark matte surfaces, and highlighted product zones establish a balance between sophistication and bold identity. The spatial organization ensures seamless visitor flow while showcasing key technologies effectively.",
-    gallery: [vedaHero, veda1, veda2, veda3, veda4],
-    featureImg: veda2,
-    featureImg2: veda3,
-    tags: ["Exhibition", "Brand Experience", "Defense Design"],
+      "Exhibition and event design projects delivered with precision, creativity and end-to-end execution.",
+
+    gallery: [vedaHero, veda1, veda2, veda3, veda4, veda5],
+    tags: ["Exhibition", "Brand Experience", "Events"],
+
+    categories: [
+      {
+        slug: "veda-defence-system",
+        label: "VEDA Defence System",
+        title: "VEDA Defence System",
+        short:
+          "A bold, modular, and brand-driven exhibition system for defence technology showcases.",
+        thumb: veda2,
+        images: [veda2, veda1, veda3, veda4, veda5],
+        meta: {
+          client: "VEDA Defence Systems Pvt. Ltd.",
+          year: "2025",
+          scope: "Booth design, demo zones, brand storytelling",
+        },
+      },
+
+      {
+        slug: "gujarat-pavilion",
+        label: "Gujarat Pavilion",
+        title: "Gujarat Pavilion",
+        short:
+          "State pavilion concept emphasizing local craft, materiality and visitor circulation.",
+        thumb: gujarat1,
+        images: [gujarat1, gujarat2, gujarat3], // replace with real Gujarat images
+        meta: {
+          client: "Government / State Pavilion",
+          year: "2024",
+          scope: "Full pavilion design, fabrication & installation",
+        },
+      },
+
+      {
+        slug: "irs",
+        label: "IRS – Indian Register of Shipping",
+        title: "IRS – Indian Register of Shipping",
+        short:
+          "Exhibition booth and display system designed for the Indian Register of Shipping.",
+        thumb: irs1,
+        images: [irs1, irs2, irs3], // replace with real IRS images
+        meta: {
+          client: "Corporate / Brand",
+          year: "2024",
+          scope:
+            "Exhibition booth design, technical display systems, fabrication, installation",
+        },
+      },
+    ],
   },
 ];
 

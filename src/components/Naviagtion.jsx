@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/NikArc.png";
+import logo from "../assets/ChatGPT Image Nov 19, 2025, 02_39_46 PM.png";
 const navItems = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
@@ -74,7 +74,7 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
-              <img src={logo} alt="Logo" className="w-[150px] object-contain" />
+              <img src={logo} alt="Logo" className="w-[200px] object-contain" />
               {/* <h2 className="text-2xl font-semibold leading-tight text-silver-100">
                 Nikarchndesign
               </h2> */}

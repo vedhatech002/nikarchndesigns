@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import ProjectDetail from "./pages/ProjectDetail";
+import CategoryDetail from "./components/CategoryDetail";
+import SAMPLE_PROJECTS from "./pages/sampleProjects";
+import Project from "./components/Project";
 // import { Contact } from "lucide-react";
 // create page components that render the existing components
 // import About from "./pages/About";
@@ -22,7 +25,11 @@ const routes = [
       //   { path: "portfolio", element: <Portfolio /> },
       //   { path: "services", element: <Services /> },
       { path: "contact", element: <Contact /> },
-      { path: "projects/:id", element: <ProjectDetail /> },
+      { path: "projects/:id", element: <Project /> }, // list / detail landing
+      {
+        path: "projects/:projectId/category/:slug",
+        element: <CategoryDetail projectsData={SAMPLE_PROJECTS} />,
+      },
     ],
   },
 ];

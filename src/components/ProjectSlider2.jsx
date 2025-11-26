@@ -154,7 +154,13 @@ const ProjectsCarousel = () => {
     };
   }, [maxIndex, cardWidth]);
 
-  const openProject = (projectId) => navigate(`/projects/${projectId}`);
+  const openProject = (projectId, projectObj) => {
+    if (projectObj) {
+      navigate(`/projects/${projectId}`, { state: { project: projectObj } });
+    } else {
+      navigate(`/projects/${projectId}`);
+    }
+  };
 
   return (
     <section
@@ -227,7 +233,7 @@ const ProjectsCarousel = () => {
                   minWidth: `${cardWidth}px`,
                   maxWidth: `${cardWidth}px`,
                 }}
-                onClick={() => openProject(p.id)}
+                onClick={() => openProject(p.id, p)}
               >
                 <div className="h-[220px] md:h-[260px] lg:h-[320px] bg-zinc-800">
                   <img
@@ -252,7 +258,7 @@ const ProjectsCarousel = () => {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        openProject(p.id);
+                        openProject(p.id, p);
                       }}
                       className="text-silver-300 border-b border-silver-400/20 pb-0.5 hover:text-white transition-colors duration-200"
                     >

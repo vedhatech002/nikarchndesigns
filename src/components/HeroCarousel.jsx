@@ -154,7 +154,7 @@ const HeroCarousel = () => {
 
       {/* Text + CTA placed at bottom-left with responsive spacing */}
       <div className="absolute inset-0 flex items-end pointer-events-none">
-        <div className="max-w-[90%] mx-auto px-6 lg:px-10 w-full">
+        <div className="max-w-[90%] mx-auto sm:px-6 lg:px-10 w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={slides[current].id}

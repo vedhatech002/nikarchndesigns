@@ -36,7 +36,7 @@ const Footer = () => {
               href="#home"
               className="w-full inline-flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-silver-400/30 rounded"
             >
-              <img src={logo} alt="logo" className="w-40 h-40" />
+              <img src={logo} alt="logo" className="w-40 h-50" />
             </a>
 
             {/* <p className="text-silver-400 max-w-sm leading-relaxed">
