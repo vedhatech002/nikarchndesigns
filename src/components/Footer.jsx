@@ -9,7 +9,7 @@ import {
   Linkedin,
 } from "lucide-react";
 import logo from "../assets/logo.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import SAMPLE_PROJECTS from "../pages/sampleProjects";
 
 const navItems = [
@@ -21,6 +21,19 @@ const navItems = [
 ];
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const openProject = (projectId, projectObj) => {
+    // If the project has EXACTLY one category → open that category directly
+    if (projectObj?.categories && projectObj.categories.length === 1) {
+      const cat = projectObj.categories[0];
+      return navigate(`/projects/${projectObj.id}/category/${cat.slug}`, {
+        state: { project: projectObj },
+      });
+    }
+
+    // otherwise open normal Project page
+    navigate(`/projects/${projectId}`, { state: { project: projectObj } });
+  };
   return (
     // Footer (replace your existing footer JSX with this)
     // Requires: logo, navItems, Twitter/Instagram/Linkedin icons, MapPin/Phone/Mail icons (you already have them).
@@ -73,18 +86,18 @@ const Footer = () => {
             {/* If SAMPLE_PROJECTS is available, map thumbnails; otherwise show placeholders */}
             <div className="grid grid-cols-3 gap-3">
               {/* Uncomment and use SAMPLE_PROJECTS if available: */}
-              {SAMPLE_PROJECTS.slice(3, 6).map((p) => (
-                <Link
+              {SAMPLE_PROJECTS.slice(0, 2).map((p) => (
+                <div
+                  // onClick={() => openProject(p.id, p)}
                   key={p.id}
-                  to={`/projects/${p.id}`}
-                  className="block overflow-hidden rounded-sm transform hover:scale-105 transition-all"
+                  className="block overflow-hidden rounded-sm transform hover:scale-105 transition-all cursor-pointer"
                 >
                   <img
                     src={p.hero || p.featureImg}
                     alt={p.title}
                     className="w-full h-16 object-cover brightness-90"
                   />
-                </Link>
+                </div>
               ))}
 
               {/* Fallback placeholders */}

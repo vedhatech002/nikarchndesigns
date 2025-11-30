@@ -136,11 +136,12 @@ const SAMPLE_PROJECTS = [
     type: "Residential Collection",
     hero: dehradunHero,
     leadin:
-      "Collection of residential projects — individual houses combined under a single project group.",
+      "Collection of residential projects where each house is presented as a detailed case.",
     description:
-      "Grouped residential projects where each house becomes a category. Use this view to pick a residence and dive into its gallery and details.",
-    gallery: [dehradunHero, kannurHero],
+      "Grouped residential projects — choose a house to view details and gallery.",
+    gallery: [dehradunHero, dehradun1, dehradun2, dehradun3, dehradun4],
     tags: ["Residentials", "Private Homes"],
+
     categories: [
       {
         slug: "dehradun-residence",
@@ -148,34 +149,61 @@ const SAMPLE_PROJECTS = [
         title: "Dehradun Residence",
         short:
           "A warm family home using indoor–outdoor connections and Vastu-informed planning.",
-        thumb: dehradun1,
+        thumb: dehradunHero,
         images: [dehradunHero, dehradun1, dehradun2, dehradun3, dehradun4],
-        meta: {
-          location: "Dehradun",
-          year: "2025",
-          status: "On going",
-        },
+        meta: { location: "Dehradun", year: "2025", status: "Proposed" },
       },
       {
         slug: "kannur-house",
         label: "Kannur House",
         title: "Kannur House",
         short: "3-BHK duplex blending minimal modern aesthetics and function.",
-        thumb: kannur1,
+        thumb: kannurHero,
         images: [kannurHero, kannur1, kannur2, kannur3],
-        meta: {
-          location: "Kannur",
-          year: "2024",
-          status: "On going",
-        },
+        meta: { location: "Kannur", year: "2024", status: "On going" },
+      },
+    ],
+
+    // sections drive the alternating text/image blocks in ProjectDetail.
+    // The first section contains the full client-provided Dehradun text (no title).
+    sections: [
+      {
+        slug: "kannur-house",
+        location: "Kannur, Kerala",
+        site_area: "330 sqm",
+        built_up_area: "195 sqm",
+        status: "On going",
+        heroImg: kannurHero,
+        title: "Kannur House",
+        subImgs: [kannur1, kannur2],
+        texts: [
+          "The 2000 sq. ft house nestled in the heart of the bustling city of Kannur in Kerala was the first major project undertaken by NAD. The brief from the client was clear, to have a house that seamlessly blends modern aesthetics with practical functionality. The result, a 3 BHK duplex meticulously planned to cater the needs of our client. The house planned on the principles of vastu embraces the concept of open planning at its core integrating living area, dining area and the kitchen into a cohesive central zone.\n\n Planned alongside the north of the site, the double height living room featuring double height windows invites in natural daylight, illuminating the entire central area with soft and ambient tones throughout the day,",
+
+          "This open central layout not only encourages flexibility in usage but also fosters a sense of connectivity and spaciousness. Along with this the ground floor of the house includes a master bedroom with attached walk-in closet and spacious bathroom, guest bedroom and staircase leading up to the first floor placed along the south of the site.\n\n The first floor is more of a private retreat, comprising a private drawing room, a second master bedroom, 2 terraces on the front and the rear side respectively and a utility bathroom and terrace on the south side. The planning along with expansive usage of glass on the facade ensures the house is well illuminated by balancing indirect and direct sunlight throughout the day, creating a more liveable and positive environment.\n\n For the exterior, the idea was to create a facade which embraced minimalism yet made a bold statement. A stone façade in earthy tones of beige and grey, accentuated with horizontal and vertical grooves, adds texture and depth. A sloping roof not only complements the minimalist design language but also ensures efficient rainwater drainage.",
+        ],
+      },
+      {
+        slug: "dehradun-residence",
+        location: "Dehradun",
+        site_area: "450 sqm",
+        built_up_area: "395 sqm",
+        status: "Proposed",
+        heroImg: dehradunHero,
+        title: "Dehradun Residence",
+        subImgs: [dehradun1, dehradun2, dehradun3, dehradun4],
+        texts: [
+          "Located in the picturesque city of Dehradun, this 4200 sq. ft. home is a sanctuary, designed to fulfil the needs of our client of having a place which is warm, intimate and relaxing.",
+          "The design concept emphasizes harnessing the city’s pleasant climate by fostering a seamless dialogue between indoor and outdoor spaces, all while maintaining a strong sense of privacy. Rooted in Vastu principles, the spatial planning ensures abundant natural light throughout the day, achieved through the strategic orientation of spaces and the thoughtful placement of glazing and large sliding openings.",
+          "The ground floor accommodates a double-height living area, formal drawing room, master suite, guest bedroom, and an open kitchen-dining zone that visually connects to the outdoors. The upper level houses a home office, gym, bar lounge, terrace, and an additional bedroom—creating a balanced blend of leisure, work, and repose.",
+          "Equal emphasis was placed on the design of the surrounding landscape, recognizing its integral role in shaping the quality and character of the indoor spaces. A balanced composition of hardscape and softscape elements defines the outdoor environment, while dense vegetation along the site’s perimeter forms a natural green buffer—enhancing privacy and establishing a serene visual enclosure for the residence.",
+        ],
       },
     ],
   },
-
   // Healthcare: single project
   {
     id: 301,
-    title: "Maheshwari Hospital",
+    title: "Healthcare",
     type: "Healthcare",
     hero: hospitalHero,
     leadin:
@@ -192,9 +220,77 @@ const SAMPLE_PROJECTS = [
       hospital6,
     ],
     tags: ["Hospital", "Healthcare"],
-    categories: [], // no internal categories for now; Project page can show gallery or details
-  },
 
+    // ONE CATEGORY (user clicks → opens this detail page)
+    categories: [
+      {
+        slug: "maheshwari-hospital",
+        label: "Maheshwari Hospital",
+        title: "Maheshwari Hospital",
+        short:
+          "Expansion and renovation of an existing hospital to increase capacity and enhance clinical services.",
+        thumb: hospital1,
+        images: [
+          hospitalHero,
+          hospital1,
+          hospital2,
+          hospital3,
+          hospital4,
+          hospital5,
+          hospital6,
+        ],
+        meta: {
+          location: "Bisauli, Uttar Pradesh",
+          status: "Under construction",
+        },
+      },
+      {},
+    ],
+
+    // SECTIONS → shown in ProjectDetail with alternating layout
+    sections: [
+      {
+        slug: "maheshwari-hospital",
+        location: "Bisuali, Uttar Pradesh",
+        site_area: "50000 sqft",
+        built_up_area: "50000 sqft",
+        status: "Under construction",
+        heroImg: hospitalHero,
+
+        title: "Maheshwari Hospital",
+
+        // these will be used for alternating text+image sections
+        subImgs: [
+          hospital1,
+          hospital2,
+          hospital3,
+          hospital4,
+          hospital5,
+          hospital6,
+        ],
+
+        // FULL CLIENT TEXT — EXACTLY AS PROVIDED
+        texts: [
+          "Maheshwari hospital, an existing 20,000 sq ft hospital situated in the town of Bisauli, Uttar Pradesh, with the growing demand for advanced healthcare services and the increasing number of patients was in a dire need of expansion and renovation. To meet the client’s requirement, the new phase of the hospital was planned to enhance capacity, introduce specialized medical facilities, and ensure that the hospital continues to meet the community’s evolving healthcare needs with efficiency and excellence.",
+
+          "Keeping in mind the welfare of the patients and the doctors the hospital was planned as per the vastu principles. The 30,000 sq ft. phase 2 of the hospital will increase the bed capacity of the hospital to 120.",
+
+          "The hospital space is spread across 4 floors including one basement. The ground floor which receives the maximum footfall is planned to cater all the OPD patients with emphasis on creating a therapeutic environment. The ground floor also consists of an emergency ward for easy admitting of ailing patients.",
+
+          "The first and second floors are dedicated to Inpatient Department (IPD) services, encompassing general wards, private rooms, Neonatal Intensive Care Units (NICUs), operating theaters (OTs), and pediatric care facilities.",
+
+          "The hospital is envisioned as a self-sustaining campus that prioritizes environmental responsibility and long-term operational efficiency. As part of its sustainable design strategy, the facility will incorporate a variety of eco-friendly features and technologies. Passive cooling methods integrated into the architecture to naturally regulate indoor temperatures, reducing the reliance on mechanical air conditioning systems and thereby conserving energy.",
+
+          "To ensure responsible water management, the campus will include rainwater harvesting pits that collect and store rainwater for various non-potable uses such as landscape irrigation and flushing systems. In addition, Sewage Treatment Plants (STPs) will be installed on-site to treat wastewater, enabling its reuse The hospital will also harness renewable energy by installing solar panels across suitable roof areas and open spaces. These solar power systems will generate clean electricity to offset the facility's energy consumption, contributing to a reduced carbon footprint and lower energy costs over time.The hospital complex is fully compliant as per the firefighting norms.",
+        ],
+      },
+    ],
+
+    // (Optional fallback images used in older layout)
+    featureImg: hospital3,
+    featureImg2: hospital4,
+    moreDescription: "",
+  },
   // Landscape
   {
     id: 401,
@@ -206,9 +302,20 @@ const SAMPLE_PROJECTS = [
       "Conceptual landscape projects focusing on planting, circulation and low-maintenance materials.",
     gallery: [landscapeHero, landscape1, landscape2, landscape3],
     tags: ["Landscape", "Planting"],
-    categories: [], // single project gallery
-  },
 
+    // ADD THIS ↓↓↓ (single category)
+    categories: [
+      {
+        slug: "landscape-design",
+        label: "Landscape Design",
+        title: "Landscape Design",
+        short:
+          "Outdoor spaces designed with a balance of hardscape and softscape.",
+        thumb: landscape1,
+        images: [landscapeHero, landscape1, landscape2, landscape3],
+      },
+    ],
+  },
   // Exhibition: VEDA (keeps categories inside)
   {
     id: 501,

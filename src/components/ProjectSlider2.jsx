@@ -155,11 +155,16 @@ const ProjectsCarousel = () => {
   }, [maxIndex, cardWidth]);
 
   const openProject = (projectId, projectObj) => {
-    if (projectObj) {
-      navigate(`/projects/${projectId}`, { state: { project: projectObj } });
-    } else {
-      navigate(`/projects/${projectId}`);
+    // If the project has EXACTLY one category → open that category directly
+    if (projectObj?.categories && projectObj.categories.length === 1) {
+      const cat = projectObj.categories[0];
+      return navigate(`/projects/${projectObj.id}/category/${cat.slug}`, {
+        state: { project: projectObj },
+      });
     }
+
+    // otherwise open normal Project page
+    navigate(`/projects/${projectId}`, { state: { project: projectObj } });
   };
 
   return (

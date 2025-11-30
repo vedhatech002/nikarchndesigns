@@ -74,10 +74,12 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2">
-              <img src={logo} alt="Logo" className="w-[200px] object-contain" />
-              {/* <h2 className="text-2xl font-semibold leading-tight text-silver-100">
-                Nikarchndesign
-              </h2> */}
+              <h1
+                className="text-xl md:text-2xl font-semibold tracking-tight text-silver-100"
+                style={{ fontFamily: "'Noto Serif', serif" }}
+              >
+                NIK ARCH & DESIGN
+              </h1>
             </Link>
 
             {/* Desktop nav */}

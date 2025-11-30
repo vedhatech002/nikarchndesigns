@@ -8,12 +8,6 @@ import ProjectDetail from "./pages/ProjectDetail";
 import CategoryDetail from "./components/CategoryDetail";
 import SAMPLE_PROJECTS from "./pages/sampleProjects";
 import Project from "./components/Project";
-// import { Contact } from "lucide-react";
-// create page components that render the existing components
-// import About from "./pages/About";
-// import Portfolio from "./pages/Portfolio";
-// import Services from "./pages/Services";
-// import Contact from "./pages/Contact";
 
 const routes = [
   {
@@ -30,6 +24,7 @@ const routes = [
         path: "projects/:projectId/category/:slug",
         element: <CategoryDetail projectsData={SAMPLE_PROJECTS} />,
       },
+      { path: "projects/:id/detail", element: <ProjectDetail /> },
     ],
   },
 ];
