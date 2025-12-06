@@ -1,7 +1,7 @@
 // src/pages/About.jsx
 import React from "react";
 import { motion } from "framer-motion";
-import about_section2 from "../assets/landscape/landscape_hero.jpg";
+import about_section2 from "../assets/about.jpg";
 
 const About = () => {
   const fadeUp = {
@@ -29,7 +29,7 @@ const About = () => {
             <h3 className="text-2xl text-silver-100 font-semibold mb-4">
               About us
             </h3>
-            <div className="sm:h-[50vh] sm:overflow-y-auto sm:pr-8 about">
+            <div className="sm:h-[70vh] sm:overflow-y-auto sm:pr-8 about">
               <p className="text-silver-400 leading-relaxed text-justify">
                 At NAD, we believe in creating a lasting and positive impact
                 through thoughtful, purpose-driven design.
@@ -76,7 +76,7 @@ const About = () => {
           </div>
           <img
             src={about_section2}
-            className="order-1 md:order-2 rounded-xl object-cover shadow-[0_0_30px_rgba(255,255,255,0.05)]"
+            className="order-1 md:order-2 rounded-xl shadow-[0_0_30px_rgba(255,255,255,0.05)] sm:h-[70vh]  mt-8 w-full object-cover"
             alt="Inspirational design"
           />
         </motion.div>

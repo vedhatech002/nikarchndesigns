@@ -127,7 +127,7 @@ const Footer = () => {
             <address className="not-italic space-y-4 text-silver-400">
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-silver-300 mt-1" />
-                <span>House no. 1676, Sector-37, Noida, UP</span>
+                <span>House no. 1676, Sector-37, Noida,Arun Vihar UP</span>
               </div>
 
               <div className="flex items-center gap-3">
@@ -196,7 +196,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/nikarchndesign?igsh=NmNrc3U0cW5rMXJk&utm_source=qr"
               aria-label="Instagram (opens in new tab)"
               target="_blank"
               rel="noreferrer"
@@ -206,7 +206,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/company/nik-arch-n-design/"
               aria-label="LinkedIn (opens in new tab)"
               target="_blank"
               rel="noreferrer"

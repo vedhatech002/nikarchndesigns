@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/ChatGPT Image Nov 19, 2025, 02_39_46 PM.png";
 const navItems = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
@@ -54,9 +53,14 @@ const Navigation = () => {
 
   return (
     <motion.nav
-      className={`fixed inset-x-0 top-0 z-50 font-serif ${
-        isOpen && "bg-black/95"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 font-serif 
+    ${isOpen ? "bg-black/95" : ""} 
+    ${
+      location.pathname === "/about" || isScrolled
+        ? "border-b border-silver-400/20 bg-black/80 backdrop-blur-md"
+        : ""
+    }
+  `}
       id="site-nav"
     >
       <motion.div

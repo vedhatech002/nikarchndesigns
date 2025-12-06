@@ -66,141 +66,6 @@ import irs3 from "../assets/exhibition/irs/IRS 3.jpg";
  */
 
 const SAMPLE_PROJECTS = [
-  // Interiors: single project with categories
-  {
-    id: 201,
-    title: "Interiors",
-    type: "Interior Collections",
-    hero: livingHero,
-    leadin:
-      "Interior design collections — Living, Kitchen, Bedroom, Bar Lounge and Bathroom.",
-    description:
-      "A grouped collection of interior projects showcasing curated spaces: living room, kitchen, bedroom, bar lounge, and bathroom suites with focused design intent.",
-    gallery: [livingHero, kitchenHero, bedroomHero],
-    tags: ["Interiors", "Residential Interiors"],
-
-    categories: [
-      {
-        slug: "living-room",
-        label: "Living Room",
-        title: "Living Room",
-        short: "Spacious living area with layered lighting and warm materials.",
-        thumb: living2,
-        images: [living2, living3, living4],
-      },
-
-      {
-        slug: "kitchen",
-        label: "Kitchen",
-        title: "Kitchen",
-        short:
-          "Open-plan island kitchen with custom storage and clean finishes.",
-        thumb: kitchen1,
-        images: [kitchen1, kitchen2, kitchen3],
-      },
-
-      {
-        slug: "bedroom-suite",
-        label: "Bedroom Suite",
-        title: "Bedroom Suite",
-        short: "Serene bedroom with layered textures and concealed storage.",
-        thumb: bedroom1,
-        images: [bedroom1, bedroom2, bedroom3],
-      },
-
-      {
-        slug: "bar-lounge",
-        label: "Bar Lounge",
-        title: "Bar Lounge",
-        short: "A compact, moody bar lounge with layered ambient lighting.",
-        thumb: livingHero, // You can replace with a dedicated bar lounge thumb
-        images: [livingHero, living1], // Replace with exact bar images if you have
-      },
-
-      {
-        slug: "bathroom",
-        label: "Bathroom",
-        title: "Bathroom",
-        short:
-          "Modern bathroom with clean finishes and ambient lighting design.",
-        thumb: bathRoom1, // TEMP placeholder — replace with real bathroom thumb
-        images: [bathRoom1, bathRoom2], // TEMP placeholder images — replace with real bathroom set
-      },
-    ],
-  },
-
-  // Residentials: grouped residences as categories
-  {
-    id: 202,
-    title: "Residentials",
-    type: "Residential Collection",
-    hero: dehradunHero,
-    leadin:
-      "Collection of residential projects where each house is presented as a detailed case.",
-    description:
-      "Grouped residential projects — choose a house to view details and gallery.",
-    gallery: [dehradunHero, dehradun1, dehradun2, dehradun3, dehradun4],
-    tags: ["Residentials", "Private Homes"],
-
-    categories: [
-      {
-        slug: "dehradun-residence",
-        label: "Dehradun Residence",
-        title: "Dehradun Residence",
-        short:
-          "A warm family home using indoor–outdoor connections and Vastu-informed planning.",
-        thumb: dehradunHero,
-        images: [dehradunHero, dehradun1, dehradun2, dehradun3, dehradun4],
-        meta: { location: "Dehradun", year: "2025", status: "Proposed" },
-      },
-      {
-        slug: "kannur-house",
-        label: "Kannur House",
-        title: "Kannur House",
-        short: "3-BHK duplex blending minimal modern aesthetics and function.",
-        thumb: kannurHero,
-        images: [kannurHero, kannur1, kannur2, kannur3],
-        meta: { location: "Kannur", year: "2024", status: "On going" },
-      },
-    ],
-
-    // sections drive the alternating text/image blocks in ProjectDetail.
-    // The first section contains the full client-provided Dehradun text (no title).
-    sections: [
-      {
-        slug: "kannur-house",
-        location: "Kannur, Kerala",
-        site_area: "330 sqm",
-        built_up_area: "195 sqm",
-        status: "On going",
-        heroImg: kannurHero,
-        title: "Kannur House",
-        subImgs: [kannur1, kannur2],
-        texts: [
-          "The 2000 sq. ft house nestled in the heart of the bustling city of Kannur in Kerala was the first major project undertaken by NAD. The brief from the client was clear, to have a house that seamlessly blends modern aesthetics with practical functionality. The result, a 3 BHK duplex meticulously planned to cater the needs of our client. The house planned on the principles of vastu embraces the concept of open planning at its core integrating living area, dining area and the kitchen into a cohesive central zone.\n\n Planned alongside the north of the site, the double height living room featuring double height windows invites in natural daylight, illuminating the entire central area with soft and ambient tones throughout the day,",
-
-          "This open central layout not only encourages flexibility in usage but also fosters a sense of connectivity and spaciousness. Along with this the ground floor of the house includes a master bedroom with attached walk-in closet and spacious bathroom, guest bedroom and staircase leading up to the first floor placed along the south of the site.\n\n The first floor is more of a private retreat, comprising a private drawing room, a second master bedroom, 2 terraces on the front and the rear side respectively and a utility bathroom and terrace on the south side. The planning along with expansive usage of glass on the facade ensures the house is well illuminated by balancing indirect and direct sunlight throughout the day, creating a more liveable and positive environment.\n\n For the exterior, the idea was to create a facade which embraced minimalism yet made a bold statement. A stone façade in earthy tones of beige and grey, accentuated with horizontal and vertical grooves, adds texture and depth. A sloping roof not only complements the minimalist design language but also ensures efficient rainwater drainage.",
-        ],
-      },
-      {
-        slug: "dehradun-residence",
-        location: "Dehradun",
-        site_area: "450 sqm",
-        built_up_area: "395 sqm",
-        status: "Proposed",
-        heroImg: dehradunHero,
-        title: "Dehradun Residence",
-        subImgs: [dehradun1, dehradun2, dehradun3, dehradun4],
-        texts: [
-          "Located in the picturesque city of Dehradun, this 4200 sq. ft. home is a sanctuary, designed to fulfil the needs of our client of having a place which is warm, intimate and relaxing.",
-          "The design concept emphasizes harnessing the city’s pleasant climate by fostering a seamless dialogue between indoor and outdoor spaces, all while maintaining a strong sense of privacy. Rooted in Vastu principles, the spatial planning ensures abundant natural light throughout the day, achieved through the strategic orientation of spaces and the thoughtful placement of glazing and large sliding openings.",
-          "The ground floor accommodates a double-height living area, formal drawing room, master suite, guest bedroom, and an open kitchen-dining zone that visually connects to the outdoors. The upper level houses a home office, gym, bar lounge, terrace, and an additional bedroom—creating a balanced blend of leisure, work, and repose.",
-          "Equal emphasis was placed on the design of the surrounding landscape, recognizing its integral role in shaping the quality and character of the indoor spaces. A balanced composition of hardscape and softscape elements defines the outdoor environment, while dense vegetation along the site’s perimeter forms a natural green buffer—enhancing privacy and establishing a serene visual enclosure for the residence.",
-        ],
-      },
-    ],
-  },
-  // Healthcare: single project
   {
     id: 301,
     title: "Healthcare",
@@ -291,6 +156,142 @@ const SAMPLE_PROJECTS = [
     featureImg2: hospital4,
     moreDescription: "",
   },
+  // Interiors: single project with categories
+  {
+    id: 201,
+    title: "Interiors",
+    type: "Interior Collections",
+    hero: livingHero,
+    leadin:
+      "Interior design collections — Living, Kitchen, Bedroom, Bar Lounge and Bathroom.",
+    description:
+      "A grouped collection of interior projects showcasing curated spaces: living room, kitchen, bedroom, bar lounge, and bathroom suites with focused design intent.",
+    gallery: [livingHero, kitchenHero, bedroomHero],
+    tags: ["Interiors", "Residential Interiors"],
+
+    categories: [
+      {
+        slug: "living-room",
+        label: "Living Room",
+        title: "Living Room",
+        short: "Spacious living area with layered lighting and warm materials.",
+        thumb: living2,
+        images: [living2, living3, living4],
+      },
+
+      {
+        slug: "kitchen",
+        label: "Kitchen",
+        title: "Kitchen",
+        short:
+          "Open-plan island kitchen with custom storage and clean finishes.",
+        thumb: kitchen1,
+        images: [kitchen1, kitchen2, kitchen3],
+      },
+
+      {
+        slug: "bedroom-suite",
+        label: "Bedroom Suite",
+        title: "Bedroom Suite",
+        short: "Serene bedroom with layered textures and concealed storage.",
+        thumb: bedroom1,
+        images: [bedroom1, bedroom2, bedroom3],
+      },
+
+      {
+        slug: "bar-lounge",
+        label: "Bar Lounge",
+        title: "Bar Lounge",
+        short: "A compact, moody bar lounge with layered ambient lighting.",
+        thumb: livingHero, // You can replace with a dedicated bar lounge thumb
+        images: [livingHero, living1], // Replace with exact bar images if you have
+      },
+
+      {
+        slug: "bathroom",
+        label: "Bathroom",
+        title: "Bathroom",
+        short:
+          "Modern bathroom with clean finishes and ambient lighting design.",
+        thumb: bathRoom1, // TEMP placeholder — replace with real bathroom thumb
+        images: [bathRoom1, bathRoom2], // TEMP placeholder images — replace with real bathroom set
+      },
+    ],
+  },
+
+  // Residentials: grouped residences as categories
+  {
+    id: 202,
+    title: "Residentials",
+    type: "Residential Collection",
+    hero: kannurHero,
+    leadin:
+      "Collection of residential projects where each house is presented as a detailed case.",
+    description:
+      "Grouped residential projects — choose a house to view details and gallery.",
+    gallery: [dehradunHero, dehradun1, dehradun2, dehradun3, dehradun4],
+    tags: ["Residentials", "Private Homes"],
+
+    categories: [
+      {
+        slug: "dehradun-residence",
+        label: "Dehradun Residence",
+        title: "Dehradun Residence",
+        short:
+          "A warm family home using indoor–outdoor connections and Vastu-informed planning.",
+        thumb: dehradunHero,
+        images: [dehradunHero, dehradun1, dehradun2, dehradun3, dehradun4],
+        meta: { location: "Dehradun", year: "2025", status: "Proposed" },
+      },
+      {
+        slug: "kannur-house",
+        label: "Kannur House",
+        title: "Kannur House",
+        short: "3-BHK duplex blending minimal modern aesthetics and function.",
+        thumb: kannurHero,
+        images: [kannurHero, kannur1, kannur2, kannur3],
+        meta: { location: "Kannur", year: "2024", status: "On going" },
+      },
+    ],
+
+    // sections drive the alternating text/image blocks in ProjectDetail.
+    // The first section contains the full client-provided Dehradun text (no title).
+    sections: [
+      {
+        slug: "kannur-house",
+        location: "Kannur, Kerala",
+        site_area: "330 sqm",
+        built_up_area: "195 sqm",
+        status: "On going",
+        heroImg: kannurHero,
+        title: "Kannur House",
+        subImgs: [kannur1, kannur2],
+        texts: [
+          "The 2000 sq. ft house nestled in the heart of the bustling city of Kannur in Kerala was the first major project undertaken by NAD. The brief from the client was clear, to have a house that seamlessly blends modern aesthetics with practical functionality. The result, a 3 BHK duplex meticulously planned to cater the needs of our client. The house planned on the principles of vastu embraces the concept of open planning at its core integrating living area, dining area and the kitchen into a cohesive central zone.\n\n Planned alongside the north of the site, the double height living room featuring double height windows invites in natural daylight, illuminating the entire central area with soft and ambient tones throughout the day,",
+
+          "This open central layout not only encourages flexibility in usage but also fosters a sense of connectivity and spaciousness. Along with this the ground floor of the house includes a master bedroom with attached walk-in closet and spacious bathroom, guest bedroom and staircase leading up to the first floor placed along the south of the site.\n\n The first floor is more of a private retreat, comprising a private drawing room, a second master bedroom, 2 terraces on the front and the rear side respectively and a utility bathroom and terrace on the south side. The planning along with expansive usage of glass on the facade ensures the house is well illuminated by balancing indirect and direct sunlight throughout the day, creating a more liveable and positive environment.\n\n For the exterior, the idea was to create a facade which embraced minimalism yet made a bold statement. A stone façade in earthy tones of beige and grey, accentuated with horizontal and vertical grooves, adds texture and depth. A sloping roof not only complements the minimalist design language but also ensures efficient rainwater drainage.",
+        ],
+      },
+      {
+        slug: "dehradun-residence",
+        location: "Dehradun",
+        site_area: "450 sqm",
+        built_up_area: "395 sqm",
+        status: "Proposed",
+        heroImg: dehradunHero,
+        title: "Dehradun Residence",
+        subImgs: [dehradun1, dehradun2, dehradun3, dehradun4],
+        texts: [
+          "Located in the picturesque city of Dehradun, this 4200 sq. ft. home is a sanctuary, designed to fulfil the needs of our client of having a place which is warm, intimate and relaxing.",
+          "The design concept emphasizes harnessing the city’s pleasant climate by fostering a seamless dialogue between indoor and outdoor spaces, all while maintaining a strong sense of privacy. Rooted in Vastu principles, the spatial planning ensures abundant natural light throughout the day, achieved through the strategic orientation of spaces and the thoughtful placement of glazing and large sliding openings.",
+          "The ground floor accommodates a double-height living area, formal drawing room, master suite, guest bedroom, and an open kitchen-dining zone that visually connects to the outdoors. The upper level houses a home office, gym, bar lounge, terrace, and an additional bedroom—creating a balanced blend of leisure, work, and repose.",
+          "Equal emphasis was placed on the design of the surrounding landscape, recognizing its integral role in shaping the quality and character of the indoor spaces. A balanced composition of hardscape and softscape elements defines the outdoor environment, while dense vegetation along the site’s perimeter forms a natural green buffer—enhancing privacy and establishing a serene visual enclosure for the residence.",
+        ],
+      },
+    ],
+  },
+  // Healthcare: single project
+
   // Landscape
   {
     id: 401,

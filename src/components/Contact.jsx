@@ -1,7 +1,8 @@
 // src/pages/Contact.jsx
 import { useState } from "react";
 import { motion } from "framer-motion";
-import contactHeroImg from "../assets/contact_hero.jpg";
+import contactHeroImg from "../assets/contact.jpg";
+import logo from "../assets/logo.png";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,12 +33,12 @@ const Contact = () => {
   return (
     <section className="bg-black text-silver-300 font-serif">
       {/* --- Hero Section with Image --- */}
-      <div className="relative h-[95vh] overflow-hidden">
+      <div className="relative h-[100vh] overflow-hidden">
         {/* Background Image */}
         <motion.img
           src={contactHeroImg}
           alt="Contact Hero"
-          className="absolute inset-0 w-full h-full object-cover brightness-90" // slightly reduced brightness
+          className="absolute inset-0 w-full h-full object-cover brightness-90 opacity-70" // slightly reduced brightness
           initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
           transition={{ duration: 8, ease: "easeOut" }}
@@ -48,8 +49,10 @@ const Contact = () => {
 
         {/* Text Content */}
         <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6">
+          <img src={logo} alt="logo" className="w-40 h-50" />
+
           <motion.h1
-            className="text-2xl md:text-4xl font-semibold text-silver-100 mb-4"
+            className="text-2xl md:text-4xl mt-5 font-semibold text-silver-100 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -205,7 +208,7 @@ const Contact = () => {
             <p className="text-silver-100 leading-relaxed">
               House no. 1676 , <br />
               Sector-37 , <br />
-              Noida
+              Noida, Arun Vihar
             </p>
           </div>
 
@@ -288,7 +291,8 @@ const Contact = () => {
             <div className="flex items-center gap-5 text-silver-300">
               {/* Instagram */}
               <a
-                href="#"
+                href="https://www.instagram.com/nikarchndesign?igsh=NmNrc3U0cW5rMXJk&utm_source=qr"
+                target="_blank"
                 className="hover:text-white transition-transform transform hover:scale-110"
                 aria-label="Instagram"
               >
@@ -308,9 +312,10 @@ const Contact = () => {
 
               {/* LinkedIn */}
               <a
-                href="#"
+                href="https://www.linkedin.com/company/nik-arch-n-design/"
                 className="hover:text-white transition-transform transform hover:scale-110"
                 aria-label="LinkedIn"
+                target="_blank"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -330,9 +335,10 @@ const Contact = () => {
 
               {/* Facebook */}
               <a
-                href="#"
+                href="https://www.instagram.com/nikarchndesign?igsh=NmNrc3U0cW5rMXJk&utm_source=qr"
                 className="hover:text-white transition-transform transform hover:scale-110"
                 aria-label="Facebook"
+                target="_blank"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
