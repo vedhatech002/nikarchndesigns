@@ -127,7 +127,11 @@ const Footer = () => {
             <address className="not-italic space-y-4 text-silver-400">
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-silver-300 mt-1" />
-                <span>House no. 1676, Sector-37, Noida,Arun Vihar UP</span>
+                <span>
+                  1676, Sector-37, Noida,
+                  <br />
+                  Arun Vihar UP
+                </span>
               </div>
 
               <div className="flex items-center gap-3">
@@ -136,17 +140,27 @@ const Footer = () => {
                   href="tel:+911234567890"
                   className="hover:text-silver-100 transition-colors"
                 >
-                  +91 12 3456 7890
+                  +91 9958400882
                 </a>
               </div>
-
+              <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-silver-300" />
+                <a
+                  href="tel:+911234567890"
+                  className="hover:text-silver-100 transition-colors"
+                >
+                  +91 9958400882
+                </a>
+              </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-silver-300" />
                 <a
-                  href="mailto:hello@studio.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="mailto:nickarcndesign@gmail.com"
                   className="hover:text-silver-100 transition-colors"
                 >
-                  hello@studio.com
+                  nickarcndesign@gmail.com
                 </a>
               </div>
 

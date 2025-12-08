@@ -24,7 +24,7 @@ const Contact = () => {
     );
 
     // open Gmail in a new tab instead of same tab
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=theactiondesigns@gmail.com&su=${subject}&body=${body}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to= nickarcndesign@gmail.com.com&su=${subject}&body=${body}`;
 
     // open Gmail compose in a new tab
     window.open(gmailUrl, "_blank", "noopener,noreferrer");
@@ -206,7 +206,7 @@ const Contact = () => {
               </h4>
             </div>
             <p className="text-silver-100 leading-relaxed">
-              House no. 1676 , <br />
+              1676 , <br />
               Sector-37 , <br />
               Noida, Arun Vihar
             </p>
@@ -234,7 +234,7 @@ const Contact = () => {
               </h4>
             </div>
             <p className="text-silver-100 text-base hover:text-silver-300 transition-colors duration-300">
-              nickarcndesigns@gmail.com
+              nickarcndesign@gmail.com
             </p>
           </div>
 

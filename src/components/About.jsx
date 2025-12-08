@@ -19,7 +19,7 @@ const About = () => {
 
         {/* 2nd Row (reversed) */}
         <motion.div
-          className="grid md:grid-cols-2 gap-12 items-center mt-8"
+          className="grid md:grid-cols-[2fr_1fr] gap-12 items-center mt-8"
           initial="hidden"
           whileInView="visible"
           variants={fadeUp}
@@ -74,11 +74,13 @@ const About = () => {
               </p>
             </div>
           </div>
-          <img
-            src={about_section2}
-            className="order-1 md:order-2 rounded-xl shadow-[0_0_30px_rgba(255,255,255,0.05)] sm:h-[70vh]  mt-8 w-full object-cover"
-            alt="Inspirational design"
-          />
+          <div className="order-1 md:order-2 sm:h-[80vh] flex items-center">
+            <img
+              src={about_section2}
+              className="w-full h-full  rounded-xl  shadow-[0_0_30px_rgba(255,255,255,0.05)]"
+              alt="Inspirational design"
+            />
+          </div>
         </motion.div>
       </div>
     </section>
