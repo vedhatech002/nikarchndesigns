@@ -58,6 +58,9 @@ import irs1 from "../assets/exhibition/irs/IRS 1.jpg";
 import irs2 from "../assets/exhibition/irs/IRS 2.jpg";
 import irs3 from "../assets/exhibition/irs/IRS 3.jpg";
 
+import etahHero from "../assets/etah_house.jpg";
+import noidaHero from "../assets/about.jpg";
+
 /**
  * SAMPLE_PROJECTS
  * - Interiors groups living/kitchen/bedroom as categories inside a single project.
@@ -252,6 +255,24 @@ const SAMPLE_PROJECTS = [
         images: [kannurHero, kannur1, kannur2, kannur3],
         meta: { location: "Kannur", year: "2024", status: "On going" },
       },
+      {
+        slug: "etah-residence",
+        label: "ETAH Residence",
+        title: "ETAH Residence",
+        short: "3-BHK duplex blending minimal modern aesthetics and function.",
+        thumb: etahHero,
+        images: [etahHero],
+        meta: {},
+      },
+      {
+        slug: "Noida-residence",
+        label: "Noida Residence",
+        title: "Noida Residence",
+        short: "4-BHK duplex blending minimal modern aesthetics and function.",
+        thumb: noidaHero,
+        images: [noidaHero],
+        meta: {},
+      },
     ],
 
     // sections drive the alternating text/image blocks in ProjectDetail.
@@ -287,6 +308,28 @@ const SAMPLE_PROJECTS = [
           "The ground floor accommodates a double-height living area, formal drawing room, master suite, guest bedroom, and an open kitchen-dining zone that visually connects to the outdoors. The upper level houses a home office, gym, bar lounge, terrace, and an additional bedroom—creating a balanced blend of leisure, work, and repose.",
           "Equal emphasis was placed on the design of the surrounding landscape, recognizing its integral role in shaping the quality and character of the indoor spaces. A balanced composition of hardscape and softscape elements defines the outdoor environment, while dense vegetation along the site’s perimeter forms a natural green buffer—enhancing privacy and establishing a serene visual enclosure for the residence.",
         ],
+      },
+      {
+        slug: "etah-residence",
+        location: "",
+        site_area: "",
+        built_up_area: "",
+        status: "",
+        heroImg: etahHero,
+        title: "ETAH Residence",
+        subImgs: [],
+        texts: [],
+      },
+      {
+        slug: "Noida-residence",
+        location: "",
+        site_area: "",
+        built_up_area: "",
+        status: "",
+        heroImg: noidaHero,
+        title: "Noida Residence",
+        subImgs: [],
+        texts: [],
       },
     ],
   },

@@ -33,6 +33,40 @@ export default function ProjectDetail() {
   // reorder sections so selected one comes first (but preserve original order for rest)
   const section = project?.sections?.[foundIndex];
 
+  // LIGHTBOX STATE
+  const [lightboxOpen, setLightboxOpen] = React.useState(false);
+  const [lightboxIndex, setLightboxIndex] = React.useState(0);
+
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+    document.body.style.overflow = "hidden"; // prevent background scroll
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    document.body.style.overflow = "";
+  };
+
+  const nextLightbox = () => {
+    setLightboxIndex((i) => (i + 1) % (section?.subImgs?.length || 1));
+  };
+
+  const prevLightbox = () => {
+    setLightboxIndex(
+      (i) => (i - 1 + section?.subImgs?.length) % section?.subImgs?.length
+    );
+  };
+
+  // ESC key close
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
   useEffect(() => {
     // smooth anchor scrolling while on this page
     const prev = document.documentElement.style.scrollBehavior;
@@ -146,16 +180,20 @@ export default function ProjectDetail() {
                       {text}
                     </p>
                   </div>
-
                   <div className="">
                     {img ? (
-                      <img
-                        src={img}
-                        alt={` ${i + 1}`}
-                        className="w-full sm:h-[80vh] object-cover rounded-md"
-                        loading="lazy"
-                        draggable={false}
-                      />
+                      <button
+                        onClick={() => openLightbox(i)}
+                        className="block w-full overflow-hidden rounded-md shadow-lg"
+                      >
+                        <img
+                          src={img}
+                          alt={` ${i + 1}`}
+                          className="w-full sm:h-[80vh] object-cover rounded-md hover:scale-[1.02] transition-transform"
+                          loading="lazy"
+                          draggable={false}
+                        />
+                      </button>
                     ) : null}
                   </div>
 
@@ -165,6 +203,40 @@ export default function ProjectDetail() {
             })}
           </div>
         </article>
+        {lightboxOpen && (
+          <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-6">
+            {/* Close button */}
+            <button
+              className="absolute top-6 right-6 text-white text-3xl"
+              onClick={closeLightbox}
+            >
+              ✕
+            </button>
+
+            {/* Prev button */}
+            <button
+              className="absolute left-6 text-white text-4xl"
+              onClick={prevLightbox}
+            >
+              ‹
+            </button>
+
+            {/* Image */}
+            <img
+              src={section.subImgs[lightboxIndex]}
+              alt="lightbox"
+              className="max-h-[88vh] max-w-[90vw] object-contain rounded-md"
+            />
+
+            {/* Next button */}
+            <button
+              className="absolute right-6 text-white text-4xl"
+              onClick={nextLightbox}
+            >
+              ›
+            </button>
+          </div>
+        )}
       </section>
     </main>
   );

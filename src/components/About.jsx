@@ -26,11 +26,11 @@ const About = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="order-2 md:order-1 ">
-            <h3 className="text-2xl text-silver-100 font-semibold mb-4">
+            <h3 className="text-2xl text-silver-100 font-semibold mb-4  2xl:text-4xl">
               About us
             </h3>
-            <div className="sm:h-[70vh] sm:overflow-y-auto sm:pr-8 about">
-              <p className="text-silver-400 leading-relaxed text-justify">
+            <div className="sm:h-[70vh] sm:overflow-y-auto sm:pr-8 about 2xl:text-3xl ">
+              <p className="text-silver-400 leading-relaxed text-justify  ">
                 At NAD, we believe in creating a lasting and positive impact
                 through thoughtful, purpose-driven design.
               </p>
@@ -74,7 +74,7 @@ const About = () => {
               </p>
             </div>
           </div>
-          <div className="order-1 md:order-2 sm:h-[80vh] flex items-center">
+          <div className="order-1 md:order-2  flex items-center">
             <img
               src={about_section2}
               className="w-full h-full  rounded-xl  shadow-[0_0_30px_rgba(255,255,255,0.05)]"

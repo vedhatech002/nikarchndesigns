@@ -130,7 +130,7 @@ const Footer = () => {
                 <span>
                   1676, Sector-37, Noida,
                   <br />
-                  Arun Vihar UP
+                  Arun Vihar
                 </span>
               </div>
 
@@ -149,7 +149,7 @@ const Footer = () => {
                   href="tel:+911234567890"
                   className="hover:text-silver-100 transition-colors"
                 >
-                  +91 9958400882
+                  +91 9810858725
                 </a>
               </div>
               <div className="flex items-center gap-3">
@@ -157,10 +157,10 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="mailto:nickarcndesign@gmail.com"
+                  href="mailto:nikarchndesign@gmail.com"
                   className="hover:text-silver-100 transition-colors"
                 >
-                  nickarcndesign@gmail.com
+                  nikarchndesign@gmail.com
                 </a>
               </div>
 
@@ -180,10 +180,10 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-silver-400 text-sm">
           <p>
-            © {new Date().getFullYear()} Nickarchndesign. All rights reserved.
+            © {new Date().getFullYear()} Nikarchndesign. All rights reserved.
           </p>
 
-          <div className="flex items-center gap-6">
+          {/* <div className="flex items-center gap-6">
             <a
               href="/privacy"
               className="hover:text-silver-100 transition-colors"
@@ -197,9 +197,9 @@ const Footer = () => {
               Terms
             </a>
             <span className="text-xs text-silver-400">Made with care</span>
-          </div>
+          </div> */}
           <div className="flex items-center gap-3 mt-3">
-            <a
+            {/* <a
               href="https://twitter.com"
               aria-label="Twitter (opens in new tab)"
               target="_blank"
@@ -207,7 +207,7 @@ const Footer = () => {
               className="p-2 rounded hover:bg-black/60 transition-colors transform hover:scale-105"
             >
               <Twitter className="w-5 h-5 text-silver-300" />
-            </a>
+            </a> */}
 
             <a
               href="https://www.instagram.com/nikarchndesign?igsh=NmNrc3U0cW5rMXJk&utm_source=qr"

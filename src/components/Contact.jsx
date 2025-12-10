@@ -20,11 +20,11 @@ const Contact = () => {
 
     const subject = encodeURIComponent(formData.subject || "Project Inquiry");
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+      `${formData.message}\n\nName: ${formData.name}\nEmail: ${formData.email}`
     );
 
     // open Gmail in a new tab instead of same tab
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to= nickarcndesign@gmail.com.com&su=${subject}&body=${body}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to= nikarchndesign@gmail.com&su=${subject}&body=${body}`;
 
     // open Gmail compose in a new tab
     window.open(gmailUrl, "_blank", "noopener,noreferrer");
@@ -206,8 +206,7 @@ const Contact = () => {
               </h4>
             </div>
             <p className="text-silver-100 leading-relaxed">
-              1676 , <br />
-              Sector-37 , <br />
+              1676 , Sector-37 , <br />
               Noida, Arun Vihar
             </p>
           </div>
@@ -234,7 +233,7 @@ const Contact = () => {
               </h4>
             </div>
             <p className="text-silver-100 text-base hover:text-silver-300 transition-colors duration-300">
-              nickarcndesign@gmail.com
+              nikarchndesign@gmail.com
             </p>
           </div>
 
@@ -334,7 +333,7 @@ const Contact = () => {
               </a>
 
               {/* Facebook */}
-              <a
+              {/* <a
                 href="https://www.instagram.com/nikarchndesign?igsh=NmNrc3U0cW5rMXJk&utm_source=qr"
                 className="hover:text-white transition-transform transform hover:scale-110"
                 aria-label="Facebook"
@@ -354,7 +353,7 @@ const Contact = () => {
                     d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
                   />
                 </svg>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
