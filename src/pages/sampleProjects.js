@@ -39,6 +39,7 @@ import bedroomHero from "../assets/Interiors/BEDROOM 1-1.jpg";
 import bedroom1 from "../assets/Interiors/BEDROOM 1-2.jpg";
 import bedroom2 from "../assets/Interiors/BEDROOM 2-1.jpg";
 import bedroom3 from "../assets/Interiors/BEDROOM 2-2.jpg";
+import bedroom4 from "../assets/hero/2.jpg";
 
 import bathRoom1 from "../assets/Interiors/BATH1.png";
 import bathRoom2 from "../assets/Interiors/BATH 2 .jpg";
@@ -198,7 +199,7 @@ const SAMPLE_PROJECTS = [
         title: "Bedroom Suite",
         short: "Serene bedroom with layered textures and concealed storage.",
         thumb: bedroom1,
-        images: [bedroom1, bedroom2, bedroom3],
+        images: [bedroom1, bedroom2, bedroom3, bedroom4],
       },
 
       {
