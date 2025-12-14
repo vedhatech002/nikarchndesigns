@@ -14,22 +14,22 @@ const About = () => {
       {/* --- Hero Section --- */}
 
       {/* --- Alternating Content Sections --- */}
-      <div className="mx-auto py-28 px-6 lg:px-16 space-y-32">
+      <div className="mx-auto py-20 px-6 lg:px-16 space-y-32 mb-8">
         {/* 1st Row */}
 
         {/* 2nd Row (reversed) */}
         <motion.div
-          className="grid md:grid-cols-[2fr_1fr] gap-12 items-center mt-8"
+          className="grid md:grid-cols-[2fr_1fr] gap-12 items-center mt-10"
           initial="hidden"
           whileInView="visible"
           variants={fadeUp}
           transition={{ duration: 0.8 }}
         >
           <div className="order-2 md:order-1 ">
-            <h3 className="text-2xl text-silver-100 font-semibold mb-4  2xl:text-4xl">
+            <h3 className="text-2xl text-silver-100 font-semibold mb-4  2xl:text-3xl">
               About us
             </h3>
-            <div className="sm:h-[70vh] sm:overflow-y-auto sm:pr-8 about 2xl:text-3xl ">
+            <div className="sm:h-[70vh] sm:overflow-y-auto sm:pr-8 about 2xl:text-2xl ">
               <p className="text-silver-400 leading-relaxed text-justify  ">
                 At NAD, we believe in creating a lasting and positive impact
                 through thoughtful, purpose-driven design.

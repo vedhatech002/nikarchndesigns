@@ -35,7 +35,7 @@ const services = [
   {
     id: 4,
     icon: <PanelsTopLeft className="w-8 h-8 text-silver-200" />,
-    title: "Exhibition Designing",
+    title: "Event / Exhibition designing & execution",
     description:
       "Creating immersive and narrative-driven exhibition spaces that communicate brand and story through spatial design and experience.",
   },

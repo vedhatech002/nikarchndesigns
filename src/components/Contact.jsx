@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import contactHeroImg from "../assets/contact.jpg";
 import logo from "../assets/logo.png";
+import { MessageSquareHeart } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -268,21 +269,8 @@ const Contact = () => {
 
           {/* --- Socials --- */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 text-silver-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 4h16v16H4z"
-                />
-              </svg>
+            <div className="flex items-center gap-3 text-silver-400">
+              <MessageSquareHeart />
               <h4 className="text-sm uppercase text-silver-400 tracking-[0.2em]">
                 Socials
               </h4>

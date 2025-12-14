@@ -257,9 +257,10 @@ const SAMPLE_PROJECTS = [
       },
       {
         slug: "etah-residence",
-        label: "ETAH Residence",
-        title: "ETAH Residence",
-        short: "3-BHK duplex blending minimal modern aesthetics and function.",
+        label: "Etah Residence",
+        title: "Etah Residence",
+        short:
+          "A minimalist, sleek and modern triplex featuring stone and wooden accents.",
         thumb: etahHero,
         images: [etahHero],
         meta: {},
@@ -268,7 +269,8 @@ const SAMPLE_PROJECTS = [
         slug: "Noida-residence",
         label: "Noida Residence",
         title: "Noida Residence",
-        short: "4-BHK duplex blending minimal modern aesthetics and function.",
+        short:
+          "A luxurious elegant duplex featuring wooden accents and expansive balconies.",
         thumb: noidaHero,
         images: [noidaHero],
         meta: {},
@@ -316,7 +318,7 @@ const SAMPLE_PROJECTS = [
         built_up_area: "",
         status: "",
         heroImg: etahHero,
-        title: "ETAH Residence",
+        title: "Etah Residence",
         subImgs: [],
         texts: [],
       },
