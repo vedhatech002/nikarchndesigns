@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export default function IntroLoader({ onFinish }) {
   useEffect(() => {
-    const timer = setTimeout(onFinish, 4000); // match GIF duration
+    const timer = setTimeout(onFinish, 4500); // match GIF duration
     return () => clearTimeout(timer);
   }, [onFinish]);
 

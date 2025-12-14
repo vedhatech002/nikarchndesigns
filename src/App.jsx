@@ -7,6 +7,7 @@ import IntroLoader from "./components/IntroLoader";
 
 export default function App() {
   const [showIntro, setShowIntro] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const hasPlayed = sessionStorage.getItem("introPlayed");
@@ -14,12 +15,19 @@ export default function App() {
     if (!hasPlayed) {
       setShowIntro(true);
     }
+
+    setIsReady(true);
   }, []);
 
   const handleIntroFinish = () => {
     sessionStorage.setItem("introPlayed", "true");
     setShowIntro(false);
   };
+
+  // ✅ SHOW INTRO WHILE DECIDING
+  if (!isReady) {
+    return <IntroLoader onFinish={() => {}} />; // no timer needed here
+  }
 
   return (
     <>
