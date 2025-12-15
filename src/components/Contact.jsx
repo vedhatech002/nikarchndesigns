@@ -207,8 +207,9 @@ const Contact = () => {
               </h4>
             </div>
             <p className="text-silver-100 leading-relaxed">
-              1676 , Sector-37 , <br />
-              Noida, Arun Vihar
+              1676 , Sector-37 <br />
+              Arun Vihar <br />
+              Noida.
             </p>
           </div>
 

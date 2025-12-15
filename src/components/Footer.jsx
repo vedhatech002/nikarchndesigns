@@ -128,11 +128,11 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-silver-300 mt-1" />
                 <span>
-                  1676, Sector-37,
-                  <br />
-                  Noida,
+                  1676, Sector-37
                   <br />
                   Arun Vihar
+                  <br />
+                  Noida.
                 </span>
               </div>
 
