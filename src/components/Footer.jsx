@@ -15,7 +15,7 @@ import SAMPLE_PROJECTS from "../pages/sampleProjects";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "#project", label: "project" },
+  { href: "#project", label: "Projects" },
   { href: "#services", label: "Services" },
   { href: "/contact", label: "Contact" },
 ];
@@ -128,7 +128,9 @@ const Footer = () => {
               <div className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-silver-300 mt-1" />
                 <span>
-                  1676, Sector-37, Noida,
+                  1676, Sector-37,
+                  <br />
+                  Noida,
                   <br />
                   Arun Vihar
                 </span>
@@ -149,7 +151,7 @@ const Footer = () => {
                   href="tel:+911234567890"
                   className="hover:text-silver-100 transition-colors"
                 >
-                  +91 9810858725
+                  +91 9810758725
                 </a>
               </div>
               <div className="flex items-center gap-3">
@@ -157,10 +159,10 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="mailto:nikarchndesign@gmail.com"
+                  href="mailto:info@nikarchndesign.com"
                   className="hover:text-silver-100 transition-colors"
                 >
-                  nikarchndesign@gmail.com
+                  info@nikarchndesign.com
                 </a>
               </div>
 
