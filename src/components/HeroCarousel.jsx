@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
  * - Smooth transitions via framer-motion kept
  */
 
-import timeless from "../assets/hero/1.jpg";
+import timeless from "../assets/hero/1v2.jpg";
 import formFunc from "../assets/hero/2.jpg";
 import sustainable from "../assets/hero/3.jpg";
 import photoreal from "../assets/hero/4.png";

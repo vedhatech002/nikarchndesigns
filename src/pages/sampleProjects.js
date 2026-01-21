@@ -11,8 +11,8 @@ import kannur1 from "../assets/kannur/kannur_interior.jpg";
 import kannur2 from "../assets/kannur/kannur_kitchen.jpg";
 import kannur3 from "../assets/kannur/elavation.jpg";
 
-import hospitalHero from "../assets/hospital/hospital_hero.jpg";
-import hospital1 from "../assets/hospital/hospital1.jpg";
+import hospitalHero from "../assets/hospital/HOSPITAL  DAY TIME VIEW 2.jpg.jpeg";
+import hospital1 from "../assets/hospital/HOSPITAL VIEW 3.jpg";
 import hospital2 from "../assets/hospital/hospital2.jpg";
 import hospital3 from "../assets/hospital/hospital3.jpg";
 import hospital4 from "../assets/hospital/hospital4.jpg";
@@ -29,6 +29,7 @@ import living1 from "../assets/Interiors/BAR 2.jpg";
 import living2 from "../assets/Interiors/LIVING ROOM 2.png";
 import living3 from "../assets/Interiors/LIVING ROOM 3.jpg";
 import living4 from "../assets/Interiors/LIVING 1.jpg";
+import living5 from "../assets/Interiors/living_room.jpg";
 
 import kitchenHero from "../assets/Interiors/KITCHEN 1-1.jpg";
 import kitchen1 from "../assets/Interiors/KITCHEN 1-2.jpg";
@@ -98,7 +99,7 @@ const SAMPLE_PROJECTS = [
         title: "Maheshwari Hospital",
         short:
           "Expansion and renovation of an existing hospital to increase capacity and enhance clinical services.",
-        thumb: hospital1,
+        thumb: hospitalHero,
         images: [
           hospitalHero,
           hospital1,
@@ -180,7 +181,7 @@ const SAMPLE_PROJECTS = [
         title: "Living Room",
         short: "Spacious living area with layered lighting and warm materials.",
         thumb: living2,
-        images: [living2, living3, living4],
+        images: [living2, , living5, living3, living4],
       },
 
       {
