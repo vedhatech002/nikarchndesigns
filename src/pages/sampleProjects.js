@@ -23,6 +23,8 @@ import landscapeHero from "../assets/landscape/landscape_hero.jpg";
 import landscape1 from "../assets/landscape/terrace.jpg";
 import landscape2 from "../assets/landscape/landscape_garden.jpg";
 import landscape3 from "../assets/landscape/terrace2.jpg";
+import landscape4 from "../assets/landscape/FOR POST.jpg";
+import landscape5 from "../assets/landscape/FINAL TERRACE 5.jpg";
 
 import livingHero from "../assets/Interiors/BAR 1.jpg";
 import living1 from "../assets/Interiors/BAR 2.jpg";
@@ -59,6 +61,18 @@ import gujarat3 from "../assets/exhibition/gujarat/GUJARAT 3.jpg";
 import irs1 from "../assets/exhibition/irs/IRS 1.jpg";
 import irs2 from "../assets/exhibition/irs/IRS 2.jpg";
 import irs3 from "../assets/exhibition/irs/IRS 3.jpg";
+
+import bes1 from "../assets/exhibition/bes/BES1.jpg";
+import bes2 from "../assets/exhibition/bes/BES2.jpg";
+import bes3 from "../assets/exhibition/bes/BES3.jpg";
+import bes4 from "../assets/exhibition/bes/BES4.jpg";
+import bes5 from "../assets/exhibition/bes/BES5.jpg";
+
+import ntpc1 from "../assets/exhibition/ntpc/NTPC1.jpg";
+import ntpc2 from "../assets/exhibition/ntpc/NTPC2.jpg";
+import ntpc3 from "../assets/exhibition/ntpc/NTPC3.jpg";
+import ntpc4 from "../assets/exhibition/ntpc/NTPC4.jpg";
+import ntpc5 from "../assets/exhibition/ntpc/NTPC5.jpg";
 
 import etahHero from "../assets/etah_house.jpg";
 import noidaHero from "../assets/about.jpg";
@@ -348,7 +362,14 @@ const SAMPLE_PROJECTS = [
     leadin: "Landscape compositions for public & private outdoor spaces.",
     description:
       "Conceptual landscape projects focusing on planting, circulation and low-maintenance materials.",
-    gallery: [landscapeHero, landscape1, landscape2, landscape3],
+    gallery: [
+      landscapeHero,
+      landscape1,
+      landscape2,
+      landscape3,
+      landscape4,
+      landscape5,
+    ],
     tags: ["Landscape", "Planting"],
 
     // ADD THIS ↓↓↓ (single category)
@@ -360,7 +381,14 @@ const SAMPLE_PROJECTS = [
         short:
           "Outdoor spaces designed with a balance of hardscape and softscape.",
         thumb: landscape1,
-        images: [landscapeHero, landscape1, landscape2, landscape3],
+        images: [
+          landscapeHero,
+          landscape1,
+          landscape2,
+          landscape3,
+          landscape4,
+          landscape5,
+        ],
       },
     ],
   },
@@ -427,12 +455,42 @@ What drives us forward is the trust and confidence of our clients, who appreciat
         short:
           "Exhibition booth and display system designed for the Indian Register of Shipping.",
         thumb: irs1,
-        images: [irs1, irs2, irs3], // replace with real IRS images
+        images: [irs1, irs2, irs3],
         meta: {
           client: "Corporate / Brand",
           year: "2024",
           scope:
             "Exhibition booth design, technical display systems, fabrication, installation",
+        },
+      },
+
+      {
+        slug: "eepc-pavilion-bes-2026",
+        label: "EEPC Pavilion at BES 2026",
+        title: "EEPC PAVILION AT BES 2026",
+        short:
+          "A large-scale immersive pavilion for the Bharat Electricity Summit 2026, powering a clean future with infinite possibilities.",
+        thumb: bes1,
+        images: [bes1, bes2, bes3, bes4, bes5],
+        meta: {
+          client: "EEPC India",
+          year: "2026",
+          scope: "Pavilion concept, design, fabrication & installation",
+        },
+      },
+
+      {
+        slug: "ntpc-pavilion-bes-2026",
+        label: "NTPC Pavilion at BES 2026",
+        title: "NTPC PAVILION AT BES 2026",
+        short:
+          "A commanding pavilion for NTPC at the Bharat Electricity Summit 2026, showcasing India's largest power generation enterprise.",
+        thumb: ntpc1,
+        images: [ntpc1, ntpc2, ntpc3, ntpc4, ntpc5],
+        meta: {
+          client: "NTPC Limited",
+          year: "2026",
+          scope: "Pavilion concept, design, fabrication & installation",
         },
       },
     ],
