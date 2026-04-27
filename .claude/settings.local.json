@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(node scripts/optimize-heroes.cjs)",
-      "Bash(powershell -Command \"Select-String -Path 'd:\\\\Nickarchnddesign\\\\Nikarcndesign\\\\src\\\\components\\\\HeroCarousel.jsx' -Pattern 'assets/hero|1v2|timeless'\")"
-    ]
-  }
-}
