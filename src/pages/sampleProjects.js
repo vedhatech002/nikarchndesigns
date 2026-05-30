@@ -352,47 +352,7 @@ const SAMPLE_PROJECTS = [
     ],
   },
   // Healthcare: single project
-
-  // Landscape
-  {
-    id: 401,
-    title: "Landscape",
-    type: "Landscape",
-    hero: landscapeHero,
-    leadin: "Landscape compositions for public & private outdoor spaces.",
-    description:
-      "Conceptual landscape projects focusing on planting, circulation and low-maintenance materials.",
-    gallery: [
-      landscapeHero,
-      landscape1,
-      landscape2,
-      landscape3,
-      landscape4,
-      landscape5,
-    ],
-    tags: ["Landscape", "Planting"],
-
-    // ADD THIS ↓↓↓ (single category)
-    categories: [
-      {
-        slug: "landscape-design",
-        label: "Landscape Design",
-        title: "Landscape Design",
-        short:
-          "Outdoor spaces designed with a balance of hardscape and softscape.",
-        thumb: landscape1,
-        images: [
-          landscapeHero,
-          landscape1,
-          landscape2,
-          landscape3,
-          landscape4,
-          landscape5,
-        ],
-      },
-    ],
-  },
-  // Exhibition: VEDA (keeps categories inside)
+// Exhibition: VEDA (keeps categories inside)
   {
     id: 501,
     title: "Exhibitions & Events",
@@ -495,6 +455,46 @@ What drives us forward is the trust and confidence of our clients, who appreciat
       },
     ],
   },
+  
+  // Landscape
+  {
+    id: 401,
+    title: "Landscape",
+    type: "Landscape",
+    hero: landscapeHero,
+    leadin: "Landscape compositions for public & private outdoor spaces.",
+    description:
+      "Conceptual landscape projects focusing on planting, circulation and low-maintenance materials.",
+    gallery: [
+      landscapeHero,
+      landscape1,
+      landscape2,
+      landscape3,
+      landscape4,
+      landscape5,
+    ],
+    tags: ["Landscape", "Planting"],
+
+    // ADD THIS ↓↓↓ (single category)
+    categories: [
+      {
+        slug: "landscape-design",
+        label: "Landscape Design",
+        title: "Landscape Design",
+        short:
+          "Outdoor spaces designed with a balance of hardscape and softscape.",
+        thumb: landscape1,
+        images: [
+          landscapeHero,
+          landscape1,
+          landscape2,
+          landscape3,
+          landscape4,
+          landscape5,
+        ],
+      },
+    ],
+  }
 ];
 
 export default SAMPLE_PROJECTS;
