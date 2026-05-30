@@ -261,10 +261,10 @@ const Contact = () => {
               </h4>
             </div>
             <p className="text-silver-100 text-base hover:text-silver-300 transition-colors duration-300">
-              +91 9958400882
+              +91 9958400890
             </p>
             <p className="text-silver-100 text-base hover:text-silver-300 transition-colors duration-300">
-              +91 9810758725
+              +91 9818321102
             </p>
           </div>
 
