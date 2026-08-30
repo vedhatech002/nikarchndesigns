@@ -6,15 +6,16 @@ import {
   PenTool,
   Layout,
   MonitorPlay,
-  PanelsTopLeft,
   Trees,
+  HardHat,
 } from "lucide-react";
 
-const services = [
+// Default (Architecture / landing page) expertise tiles.
+export const DEFAULT_SERVICES = [
   {
     id: 1,
     icon: <Ruler className="w-8 h-8 text-silver-200" />,
-    title: "Designing & Planning",
+    title: "Architectural Design & Planning",
     description:
       "Comprehensive spatial design and planning solutions integrating creativity, functionality, and structural precision for every project scale.",
   },
@@ -34,33 +35,35 @@ const services = [
   },
   {
     id: 4,
-    icon: <PanelsTopLeft className="w-8 h-8 text-silver-200" />,
-    title: "Event / Exhibition designing & execution",
-    description:
-      "Creating immersive and narrative-driven exhibition spaces that communicate brand and story through spatial design and experience.",
-  },
-  {
-    id: 5,
     icon: <MonitorPlay className="w-8 h-8 text-silver-200" />,
     title: "Architectural Visualization",
     description:
       "Bringing architectural ideas to life through high-fidelity 3D visualization and cinematic renderings with realistic light and material detail.",
   },
   {
-    id: 6,
+    id: 5,
     icon: <Trees className="w-8 h-8 text-silver-200" />,
     title: "Landscape Designing",
     description:
       "Designing thoughtful and sustainable landscape environments that blend natural elements, terrain, and spatial experience to complement built architecture.",
   },
+  {
+    id: 6,
+    icon: <HardHat className="w-8 h-8 text-silver-200" />,
+    title: "Site Supervision & Execution",
+    description:
+      "Hands-on project execution and site supervision that carries every design from technical documentation through to precise, on-ground delivery.",
+  },
 ];
 
-const ServicesSection = () => {
+const ServicesSection = ({
+  id = "services",
+  eyebrow = "Our Expertise",
+  heading = "Services We Provide",
+  services = DEFAULT_SERVICES,
+}) => {
   return (
-    <section
-      id="services"
-      className="bg-black py-24 text-silver-300 font-serif"
-    >
+    <section id={id} className="bg-black py-24 text-silver-300 font-serif">
       <div className=" mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -71,10 +74,10 @@ const ServicesSection = () => {
           className="mb-16"
         >
           <h3 className="text-xs uppercase tracking-[0.35em] text-silver-400/80 font-light">
-            Our Expertise
+            {eyebrow}
           </h3>
           <h2 className="text-3xl md:text-4xl text-silver-100 font-semibold mt-3">
-            Services We Provide
+            {heading}
           </h2>
           <div className="w-24 h-[1px] bg-gradient-to-r from-silver-400 to-silver-200 mt-4"></div>
         </motion.div>

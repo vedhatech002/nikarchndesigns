@@ -3,8 +3,8 @@ import fs from "fs";
 import path from "path";
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
-import routes from "./src/routes"; // array form
+import { StaticRouter } from "react-router";
+// import routes from "./src/routes";
 import App from "./src/App";
 
 const app = express();
@@ -20,9 +20,11 @@ app.get("*", async (req, res) => {
     // React Router v7 supports creating a memory/static router for SSR
     const context = {};
     const markup = renderToString(
-      <StaticRouter location={req.url}>
-        <App />
-      </StaticRouter>
+      React.createElement(
+        StaticRouter,
+        { location: req.url },
+        React.createElement(App)
+      )
     );
 
     // Simple HTML template: load the built index.html and inject markup

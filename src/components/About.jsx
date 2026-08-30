@@ -26,10 +26,10 @@ const About = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="order-2 md:order-1 ">
-            <h3 className="text-2xl text-silver-100 font-semibold mb-4  2xl:text-3xl">
+            <h3 className="text-xl text-silver-100 font-semibold mb-4  2xl:text-2xl">
               About us
             </h3>
-            <div className="sm:h-[70vh] sm:overflow-y-auto sm:pr-8 about 2xl:text-2xl ">
+            <div className="sm:h-[70vh] sm:overflow-y-auto sm:pr-8 about text-sm 2xl:text-xl ">
               <p className="text-silver-400 leading-relaxed text-justify  ">
                 At NAD, we believe in creating a lasting and positive impact
                 through thoughtful, purpose-driven design.

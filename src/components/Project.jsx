@@ -69,7 +69,7 @@ const Project = ({ project: projectProp }) => {
               .map((p, i) => (
                 <p
                   key={i}
-                  className="mt-4 text-silver-300 max-w-3xl leading-relaxed"
+                  className="mt-4 text-silver-300 leading-relaxed"
                 >
                   {p}
                 </p>

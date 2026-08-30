@@ -113,7 +113,7 @@ const CategoryDetail = ({ projectsData }) => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h2 className="text-2xl md:text-3xl text-silver-100 font-semibold">
-              {project.title} — {category.label}
+              {category.label}
             </h2>
             <p className="mt-2 text-silver-400">{category.short}</p>
           </div>

@@ -13,10 +13,9 @@ import { Link, useNavigate } from "react-router-dom";
 import SAMPLE_PROJECTS from "../pages/sampleProjects";
 
 const navItems = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "#project", label: "Projects" },
-  { href: "#services", label: "Services" },
+  { href: "/", label: "Architecture" },
+  { href: "/Exhibitions", label: "Exhibitions" },
   { href: "/contact", label: "Contact" },
 ];
 

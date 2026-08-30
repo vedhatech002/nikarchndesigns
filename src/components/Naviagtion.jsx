@@ -1,13 +1,29 @@
 // src/components/Navigation.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+// Architecture and Exhibitions each carry a hover dropdown pointing at the
+// Services / Projects sections on their own page (anchor routing).
 const navItems = [
-  { label: "Home", path: "/" },
   { label: "About", path: "/about" },
-  { label: "Services", path: "#services" },
-  { label: "Projects", path: "#projects" },
+  {
+    label: "Architecture",
+    path: "/",
+    dropdown: [
+      { label: "Services", anchor: "#services" },
+      { label: "Projects", anchor: "#projects" },
+    ],
+  },
+  {
+    label: "Exhibitions",
+    path: "/Exhibitions",
+    dropdown: [
+      { label: "Services", anchor: "#services" },
+      { label: "Projects", anchor: "#projects" },
+    ],
+  },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -16,9 +32,16 @@ const backdropVariant = {
   visible: { opacity: 1, pointerEvents: "auto" },
 };
 
+const dropdownVariant = {
+  hidden: { opacity: 0, y: -8, pointerEvents: "none" },
+  visible: { opacity: 1, y: 0, pointerEvents: "auto" },
+};
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const closeTimer = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -29,32 +52,50 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // 🔥 Smooth scroll handler for same-page sections
-  const handleNavClick = (item) => {
-    const isSection = item.path.startsWith("#");
-    const isHome = window.location.pathname === "/";
+  // Close any open dropdown / mobile menu whenever the route changes.
+  useEffect(() => {
+    setOpenDropdown(null);
+    setIsOpen(false);
+  }, [location.pathname]);
 
-    if (isSection) {
-      if (isHome) {
-        // ✅ If already on home, just scroll
-        const el = document.querySelector(item.path);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        // 🧭 If not on home, navigate first, then scroll after load
-        navigate("/", { state: { scrollTo: item.path } });
-      }
+  const openDropdownNow = (label) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenDropdown(label);
+  };
+
+  const scheduleCloseDropdown = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpenDropdown(null), 150);
+  };
+
+  // Top-level nav item click — always a real page ("/", "/about", "/Exhibitions", "/contact").
+  const handleTopClick = (item) => {
+    navigate(item.path);
+    setIsOpen(false);
+    setOpenDropdown(null);
+  };
+
+  // Dropdown (Services / Projects) click — scroll if already on that page,
+  // otherwise navigate there first and scroll once it has mounted.
+  const handleDropdownClick = (parentPath, anchor) => {
+    const isOnParentPage =
+      location.pathname.toLowerCase() === parentPath.toLowerCase();
+
+    if (isOnParentPage) {
+      const el = document.querySelector(anchor);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      // Normal page navigation (About, Contact)
-      navigate(item.path);
+      navigate(parentPath, { state: { scrollTo: anchor } });
     }
 
     setIsOpen(false);
+    setOpenDropdown(null);
   };
 
   return (
     <motion.nav
-      className={`fixed inset-x-0 top-0 z-50 font-serif 
-    ${isOpen ? "bg-black/95" : ""} 
+      className={`fixed inset-x-0 top-0 z-50 font-serif
+    ${isOpen ? "bg-black/95" : ""}
     ${
       location.pathname === "/about" || isScrolled
         ? "border-b border-silver-400/20 bg-black/80 backdrop-blur-md"
@@ -89,20 +130,66 @@ const Navigation = () => {
             {/* Desktop nav */}
             <div className="hidden md:flex items-center space-x-10">
               {navItems.map((item) => (
-                <motion.button
+                <div
                   key={item.label}
-                  onClick={() => handleNavClick(item)}
-                  className="relative text-silver-300 uppercase tracking-widest text-sm font-medium hover:text-white transition-colors duration-300 cursor-pointer"
+                  className="relative"
+                  onMouseEnter={() =>
+                    item.dropdown && openDropdownNow(item.label)
+                  }
+                  onMouseLeave={() => item.dropdown && scheduleCloseDropdown()}
                 >
-                  {item.label}
-                  <motion.span
-                    layout
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="absolute -bottom-1 left-0 h-[1px] bg-gradient-to-r from-silver-300 to-silver-500"
-                  />
-                </motion.button>
+                  <motion.button
+                    onClick={() => handleTopClick(item)}
+                    className="relative flex items-center gap-1 text-silver-300 uppercase tracking-widest text-sm font-medium hover:text-white transition-colors duration-300 cursor-pointer"
+                  >
+                    {item.label}
+                    {item.dropdown && (
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-300 ${
+                          openDropdown === item.label ? "rotate-180" : ""
+                        }`}
+                      />
+                    )}
+                    <motion.span
+                      layout
+                      initial={{ width: 0 }}
+                      whileHover={{ width: "100%" }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="absolute -bottom-1 left-0 h-[1px] bg-gradient-to-r from-silver-300 to-silver-500"
+                    />
+                  </motion.button>
+
+                  {/* Hover dropdown */}
+                  {item.dropdown && (
+                    <AnimatePresence>
+                      {openDropdown === item.label && (
+                        <motion.div
+                          initial="hidden"
+                          animate="visible"
+                          exit="hidden"
+                          variants={dropdownVariant}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                          className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-44"
+                        >
+                          <div className="rounded-lg border border-silver-400/15 bg-black/95 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.5)] overflow-hidden">
+                            {item.dropdown.map((sub) => (
+                              <button
+                                key={sub.label}
+                                onClick={() =>
+                                  handleDropdownClick(item.path, sub.anchor)
+                                }
+                                className="block w-full text-left px-4 py-3 text-xs uppercase tracking-widest text-silver-300 hover:text-white hover:bg-silver-400/10 transition-colors duration-200"
+                              >
+                                {sub.label}
+                              </button>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
               ))}
             </div>
 
@@ -129,15 +216,31 @@ const Navigation = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="md:hidden bg-black/95 backdrop-blur-sm border-b border-silver-400/20"
             >
-              <div className="px-4 pt-4 pb-6 space-y-2 sm:px-6">
+              <div className="px-4 pt-4 pb-6 space-y-1 sm:px-6">
                 {navItems.map((item) => (
-                  <button
-                    key={item.label}
-                    onClick={() => handleNavClick(item)}
-                    className="block w-full text-left px-3 py-3 rounded-lg text-silver-200 hover:text-white hover:bg-silver-400/10 transition-colors duration-200 font-medium"
-                  >
-                    {item.label}
-                  </button>
+                  <div key={item.label}>
+                    <button
+                      onClick={() => handleTopClick(item)}
+                      className="block w-full text-left px-3 py-3 rounded-lg text-silver-200 hover:text-white hover:bg-silver-400/10 transition-colors duration-200 font-medium"
+                    >
+                      {item.label}
+                    </button>
+                    {item.dropdown && (
+                      <div className="pl-6 pb-2 space-y-1">
+                        {item.dropdown.map((sub) => (
+                          <button
+                            key={sub.label}
+                            onClick={() =>
+                              handleDropdownClick(item.path, sub.anchor)
+                            }
+                            className="block w-full text-left px-3 py-2 rounded-lg text-xs uppercase tracking-widest text-silver-400 hover:text-white hover:bg-silver-400/10 transition-colors duration-200"
+                          >
+                            {sub.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
             </motion.div>

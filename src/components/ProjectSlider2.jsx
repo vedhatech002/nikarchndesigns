@@ -1,25 +1,51 @@
 // src/components/ProjectsCarousel.jsx
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { motion, animate, useMotionValue } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import CarouselArrows from "./CarouselArrows";
 import SAMPLE_PROJECTS from "../pages/sampleProjects";
 
 const CARD_GAP = 24;
 const MIN_CARD = 220;
 const VISIBLE_CARDS_DESKTOP = 4;
+const AUTOPLAY_MS = 5000;
 
-const ProjectsCarousel = () => {
-  const containerRef = useRef(null); // visible viewport container
-  const trackRef = useRef(null); // motion track (kept for drag)
-  const x = useMotionValue(0); // motion x (still used for drag)
+// Default items: the top-level portfolio projects, used on the landing page.
+const buildDefaultItems = (navigate) =>
+  SAMPLE_PROJECTS.map((p) => ({
+    key: p.id,
+    image: p.hero || p.image,
+    title: p.title,
+    tag: p.type,
+    onClick: () => {
+      // If the project has EXACTLY one category → open that category directly
+      if (p?.categories && p.categories.length === 1) {
+        const cat = p.categories[0];
+        navigate(`/projects/${p.id}/category/${cat.slug}`, {
+          state: { project: p },
+        });
+        return;
+      }
+      navigate(`/projects/${p.id}`, { state: { project: p } });
+    },
+  }));
+
+const ProjectsCarousel = ({
+  id = "projects",
+  eyebrow = "Our projects",
+  heading = "Selected Works",
+  items,
+  autoplay = true,
+}) => {
+  const containerRef = useRef(null); // visible viewport container (clips, does not scroll)
+  const x = useMotionValue(0); // single source of truth for horizontal position
   const [cardWidth, setCardWidth] = useState(320);
   const [index, setIndex] = useState(0);
   const [maxIndex, setMaxIndex] = useState(0);
   const [dragLimits, setDragLimits] = useState({ left: 0, right: 0 });
   const navigate = useNavigate();
 
-  const projects = SAMPLE_PROJECTS;
+  const projects = items || buildDefaultItems(navigate);
 
   // compute sizes and limits
   useEffect(() => {
@@ -43,10 +69,12 @@ const ProjectsCarousel = () => {
       setMaxIndex(steps);
 
       // clamp index and align motion x
-      const clampedIndex = Math.min(index, steps);
-      const targetX = -clampedIndex * (computedCardWidth + CARD_GAP);
-      animate(x, targetX, { type: "spring", stiffness: 220, damping: 28 });
-      setIndex(clampedIndex);
+      setIndex((prevIndex) => {
+        const clampedIndex = Math.min(prevIndex, steps);
+        const targetX = -clampedIndex * (computedCardWidth + CARD_GAP);
+        animate(x, targetX, { type: "spring", stiffness: 220, damping: 28 });
+        return clampedIndex;
+      });
     };
 
     calc();
@@ -54,6 +82,20 @@ const ProjectsCarousel = () => {
     return () => window.removeEventListener("resize", calc);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projects.length]);
+
+  // Single positioning mechanism: animate the motion `x` value only. (No
+  // native container scrolling — mixing both caused the track to shift by
+  // roughly double the intended distance per step, which is what pushed
+  // later cards like Oman out of view and made the carousel feel broken.)
+  const scrollToIndex = useCallback(
+    (targetIndex) => {
+      const clamped = Math.max(0, Math.min(maxIndex, targetIndex));
+      const targetX = -clamped * (cardWidth + CARD_GAP);
+      animate(x, targetX, { type: "spring", stiffness: 220, damping: 28 });
+      setIndex(clamped);
+    },
+    [cardWidth, maxIndex, x]
+  );
 
   // when user drags (framer motion), snap logic
   const handleDragEnd = (event, info) => {
@@ -75,51 +117,8 @@ const ProjectsCarousel = () => {
     scrollToIndex(newIndex);
   };
 
-  // helper to animate motion x and also try to scroll the container (keeps both in-sync)
-  const scrollToIndex = (targetIndex) => {
-    const clamped = Math.max(0, Math.min(maxIndex, targetIndex));
-    const targetX = -clamped * (cardWidth + CARD_GAP);
-
-    // prefer animating motion value (keeps drag UI consistent)
-    animate(x, targetX, { type: "spring", stiffness: 220, damping: 28 });
-    setIndex(clamped);
-
-    // also scroll the container so native scroll position matches visuals (helpful for accessibility)
-    const container = containerRef.current;
-    const firstCard = container?.querySelector("[data-card]");
-    if (container && firstCard) {
-      const gap = parseFloat(getComputedStyle(container).gap) || CARD_GAP;
-      const step = firstCard.offsetWidth + gap;
-      container.scrollTo({ left: clamped * step, behavior: "smooth" });
-    }
-  };
-
-  // robust arrow handlers: try to scroll the visible container; fallback to animate motion value
-  const scrollContainerByStep = (direction = 1) => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const firstCard = container.querySelector("[data-card]");
-    if (firstCard) {
-      const gap = parseFloat(getComputedStyle(container).gap) || CARD_GAP;
-      const step = firstCard.offsetWidth + gap;
-      container.scrollBy({ left: direction * step, behavior: "smooth" });
-      return;
-    }
-    // fallback fallback: use motion animate
-    const newIndex = Math.max(0, Math.min(maxIndex, index + -direction));
-    scrollToIndex(newIndex);
-  };
-
-  const prev = () => {
-    scrollContainerByStep(-1);
-    // also update index state for button disabled UI (we'll sync on scroll event too)
-    setIndex((i) => Math.max(0, i - 1));
-  };
-  const next = () => {
-    scrollContainerByStep(1);
-    setIndex((i) => Math.min(maxIndex, i + 1));
-  };
+  const prev = () => scrollToIndex(index - 1);
+  const next = () => scrollToIndex(index + 1);
 
   // keyboard navigation
   useEffect(() => {
@@ -129,97 +128,41 @@ const ProjectsCarousel = () => {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index, maxIndex, cardWidth]);
 
-  // keep index synced when user scrolls the container manually (touch, wheel)
+  // Autoplay — mirrors the Hero carousel's cadence, and loops back to the
+  // start once the end is reached. Restarts whenever the index changes so a
+  // manual drag/arrow interaction doesn't fight the timer.
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    let raf = null;
-    const onScroll = () => {
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const firstCard = el.querySelector("[data-card]");
-        if (!firstCard) return;
-        const gap = parseFloat(getComputedStyle(el).gap) || CARD_GAP;
-        const step = firstCard.offsetWidth + gap;
-        const cur = Math.round(el.scrollLeft / step);
-        setIndex(Math.max(0, Math.min(maxIndex, cur)));
-      });
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      el.removeEventListener("scroll", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [maxIndex, cardWidth]);
-
-  const openProject = (projectId, projectObj) => {
-    // If the project has EXACTLY one category → open that category directly
-    if (projectObj?.categories && projectObj.categories.length === 1) {
-      const cat = projectObj.categories[0];
-      return navigate(`/projects/${projectObj.id}/category/${cat.slug}`, {
-        state: { project: projectObj },
-      });
-    }
-
-    // otherwise open normal Project page
-    navigate(`/projects/${projectId}`, { state: { project: projectObj } });
-  };
+    if (!autoplay || maxIndex <= 0) return;
+    const timer = setInterval(() => {
+      const nextIndex = index >= maxIndex ? 0 : index + 1;
+      scrollToIndex(nextIndex);
+    }, AUTOPLAY_MS);
+    return () => clearInterval(timer);
+  }, [autoplay, index, maxIndex, scrollToIndex]);
 
   return (
     <section
-      id="projects"
+      id={id}
       className="py-20 bg-black text-silver-300 font-serif"
-      aria-label="Projects carousel"
+      aria-label={`${heading} carousel`}
     >
       <div className="mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8 relative z-20">
-          <div>
-            <h3 className="text-xs uppercase tracking-[0.35em] text-silver-400/80 font-light">
-              Our projects
-            </h3>
-            <h2 className="text-2xl md:text-3xl text-silver-100 font-semibold mt-3">
-              Selected Works
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-3 z-30">
-            <button
-              onClick={prev}
-              aria-label="Previous"
-              disabled={index === 0}
-              className={`relative z-30 bg-black/50 border p-2 rounded-md ${
-                index === 0
-                  ? "opacity-40 cursor-not-allowed"
-                  : "hover:bg-black/70"
-              }`}
-            >
-              <ChevronLeft className="text-silver-300" />
-            </button>
-            <button
-              onClick={next}
-              aria-label="Next"
-              disabled={index >= maxIndex}
-              className={`relative z-30 bg-black/50 border p-2 rounded-md ${
-                index >= maxIndex
-                  ? "opacity-40 cursor-not-allowed"
-                  : "hover:bg-black/70"
-              }`}
-            >
-              <ChevronRight className="text-silver-300" />
-            </button>
-          </div>
+        <div className="mb-8">
+          <h3 className="text-xs uppercase tracking-[0.35em] text-silver-400/80 font-light">
+            {eyebrow}
+          </h3>
+          <h2 className="text-2xl md:text-3xl text-silver-100 font-semibold mt-3">
+            {heading}
+          </h2>
         </div>
 
-        {/* visible scroll container (native) */}
-        <div
-          ref={containerRef}
-          className="relative overflow-x-auto hide-scrollbar gap-6 snap-x snap-mandatory -mx-1 px-6"
-        >
-          {/* motion track inside - keeps drag interaction but cards live in the scroll container */}
+        {/* visible viewport — clips overflow, never scrolls natively */}
+        <div ref={containerRef} className="relative overflow-hidden -mx-1 px-6">
+          {/* motion track — the ONLY thing that moves, via the `x` transform */}
           <motion.div
-            ref={trackRef}
             style={{ x }}
             drag="x"
             onDragEnd={handleDragEnd}
@@ -227,22 +170,21 @@ const ProjectsCarousel = () => {
             dragElastic={0.08}
             dragMomentum={false}
             className="flex items-stretch gap-6 will-change-transform touch-pan-y"
-            style={{ minHeight: 0 }}
           >
             {projects.map((p) => (
               <article
-                key={p.id}
+                key={p.key}
                 data-card
-                className="snap-start bg-black/95 rounded-lg border border-silver-400/10 overflow-hidden flex-shrink-0 cursor-pointer shadow-lg"
+                className="bg-black/95 rounded-lg border border-silver-400/10 overflow-hidden flex-shrink-0 cursor-pointer shadow-lg"
                 style={{
                   minWidth: `${cardWidth}px`,
                   maxWidth: `${cardWidth}px`,
                 }}
-                onClick={() => openProject(p.id, p)}
+                onClick={() => p.onClick?.()}
               >
                 <div className="h-[220px] md:h-[260px] lg:h-[320px] bg-zinc-800">
                   <img
-                    src={p.hero || p.image}
+                    src={p.image}
                     alt={p.title}
                     className="w-full h-full object-cover brightness-75 transition-transform duration-700 hover:scale-105"
                     draggable={false}
@@ -254,7 +196,7 @@ const ProjectsCarousel = () => {
                 <div className="p-4 bg-black">
                   <div className="w-14 h-[2px] bg-gradient-to-r from-silver-200 to-silver-400 mb-3" />
                   <p className="text-xs uppercase tracking-wider text-silver-400">
-                    {p.type}
+                    {p.tag}
                   </p>
                   <h4 className="mt-2 text-lg text-silver-100 font-semibold">
                     {p.title}
@@ -263,7 +205,7 @@ const ProjectsCarousel = () => {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        openProject(p.id, p);
+                        p.onClick?.();
                       }}
                       className="text-silver-300 border-b border-silver-400/20 pb-0.5 hover:text-white transition-colors duration-200"
                     >
@@ -275,6 +217,21 @@ const ProjectsCarousel = () => {
             ))}
           </motion.div>
         </div>
+
+        {/* Prev / Next controls — centered bottom, matching the Hero carousel */}
+        {maxIndex > 0 && (
+          <div className="relative h-16 mt-2">
+            <CarouselArrows
+              onPrev={prev}
+              onNext={next}
+              prevDisabled={index === 0}
+              nextDisabled={index >= maxIndex}
+              prevLabel="Previous projects"
+              nextLabel="Next projects"
+              className="!bottom-0"
+            />
+          </div>
+        )}
       </div>
     </section>
   );

@@ -1,14 +1,16 @@
 // src/components/HeroCarousel.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import CarouselArrows from "./CarouselArrows";
 
 import timeless from "../assets/hero/1.jpg";
 import formFunc from "../assets/hero/2.jpg";
 import sustainable from "../assets/hero/3.jpg";
 import photoreal from "../assets/hero/5.jpg";
-import exhibition from "../assets/hero/4.jpg";
+//import exhibition from "../assets/hero/4.jpg";
 
-const slides = [
+// Default (Architecture / landing page) slides — unchanged from the original design.
+export const DEFAULT_HERO_SLIDES = [
   {
     id: 1,
     media: timeless,
@@ -33,16 +35,16 @@ const slides = [
     description:
       "Integrating passive design, responsible materials, and energy efficiency to create environmentally conscious spaces that endure with ecological impact.",
   },
+  // {
+  //   id: 4,
+  //   media: exhibition,
+  //   title: "Built to Be Noticed",
+  //   subtitle: "Exhibit Excellence",
+  //   description:
+  //     "Immersive pavilion designs that transform ideas into unforgettable brand experiences.",
+  // },
   {
     id: 4,
-    media: exhibition,
-    title: "Built to Be Noticed",
-    subtitle: "Exhibit Excellence",
-    description:
-      "Immersive pavilion designs that transform ideas into unforgettable brand experiences.",
-  },
-  {
-    id: 5,
     media: photoreal,
     title: "Photorealistic Rendering",
     subtitle: "True-to-Life Visuals",
@@ -51,15 +53,34 @@ const slides = [
   },
 ];
 
-const HeroCarousel = () => {
+const AUTOPLAY_MS = 5000;
+
+const HeroCarousel = ({
+  slides = DEFAULT_HERO_SLIDES,
+  ctaHref = "/contact",
+  ctaLabel = "Contact Now",
+}) => {
   const [current, setCurrent] = useState(0);
 
+  // Autoplay — restarts whenever `current` changes (including manual nav),
+  // so clicking an arrow doesn't fight the timer.
   useEffect(() => {
+    if (!slides.length) return;
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, AUTOPLAY_MS);
     return () => clearInterval(timer);
-  }, []);
+  }, [current, slides.length]);
+
+  const goPrev = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  }, [slides.length]);
+
+  const goNext = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, [slides.length]);
+
+  if (!slides.length) return null;
 
   return (
     <section className="relative h-screen overflow-hidden bg-black text-silver-300 font-serif">
@@ -113,7 +134,7 @@ const HeroCarousel = () => {
                   </p>
 
                   <motion.a
-                    href="/contact"
+                    href={ctaHref}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
                     className="group relative inline-flex items-center gap-3 px-8 py-2
@@ -122,7 +143,7 @@ const HeroCarousel = () => {
                            transition-all duration-500 ease-in-out"
                   >
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-white">
-                      Contact Now
+                      {ctaLabel}
                     </span>
 
                     <motion.span
@@ -164,6 +185,16 @@ const HeroCarousel = () => {
           </AnimatePresence>
         </div>
       </div>
+
+      {/* Prev / Next controls */}
+      {slides.length > 1 && (
+        <CarouselArrows
+          onPrev={goPrev}
+          onNext={goNext}
+          prevLabel="Previous hero slide"
+          nextLabel="Next hero slide"
+        />
+      )}
     </section>
   );
 };

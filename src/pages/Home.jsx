@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import HeroCarousel from "../components/HeroCarousel";
 import BrandStory from "../components/BrandStory";
-import ProjectsCarousel from "../components/ProjectSlider2";
 import ServicesSection from "../components/ServiceSection";
+import ProjectsCarousel from "../components/ProjectSlider2";
+import ContactInfo from "../components/ContactInfo";
 import { useLocation } from "react-router";
 
 const Home = () => {
@@ -23,8 +24,9 @@ const Home = () => {
     <>
       <HeroCarousel />
       <BrandStory />
-      <ProjectsCarousel />
       <ServicesSection />
+      <ProjectsCarousel />
+      <ContactInfo />
     </>
   );
 };

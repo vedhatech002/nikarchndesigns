@@ -5,6 +5,9 @@ import tailwindcss from "@tailwindcss/vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"]
+  },
   server: {
     host: true, // This enables network access
     // You can also specify a specific IP address if needed, e.g., host: '192.168.1.100'
