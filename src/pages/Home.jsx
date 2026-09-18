@@ -3,7 +3,6 @@ import HeroCarousel from "../components/HeroCarousel";
 import BrandStory from "../components/BrandStory";
 import ServicesSection from "../components/ServiceSection";
 import ProjectsCarousel from "../components/ProjectSlider2";
-import ContactInfo from "../components/ContactInfo";
 import { useLocation } from "react-router";
 
 const Home = () => {
@@ -26,7 +25,6 @@ const Home = () => {
       <BrandStory />
       <ServicesSection />
       <ProjectsCarousel />
-      <ContactInfo />
     </>
   );
 };
