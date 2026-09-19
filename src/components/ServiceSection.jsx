@@ -9,51 +9,58 @@ import {
   Trees,
   HardHat,
 } from "lucide-react";
+import archIcon from '../assets/default_services_icons/architecture_design.png';
+import urbanIcon from '../assets/default_services_icons/urban_design.png';
+import interiorIcon from '../assets/default_services_icons/interior_design.png';
+import projectManagementIcon from '../assets/default_services_icons/project_management.png';
+import landscapeIcon from '../assets/default_services_icons/landscape_design.png';
+import turnkeyIcon from '../assets/default_services_icons/turnkey.png';
+
 
 // Default (Architecture / landing page) expertise tiles.
 export const DEFAULT_SERVICES = [
   {
     id: 1,
-    icon: <Ruler className="w-8 h-8 text-silver-200" />,
-    title: "Architectural Design & Planning",
+    icon: <img src={archIcon} alt="Nikarc Design service icon" className="w-8 h-8 object-contain rounded-md brightness-0 invert" />,
+    title: "Architectural Design",
     description:
-      "Comprehensive spatial design and planning solutions integrating creativity, functionality, and structural precision for every project scale.",
+      "Thoughtful architectural solutions that balance functionality, aesthetics, context, and the needs of the people who inhabit and experience each space.",
   },
   {
     id: 2,
-    icon: <PenTool className="w-8 h-8 text-silver-200" />,
-    title: "Design Consultancy",
+    icon: <img src={urbanIcon} alt="Nikarc Design service icon" className="w-8 h-8 object-contain rounded-md brightness-0 invert" />,
+    title: "Urban Design",
     description:
-      "Providing expert design consultancy that bridges concept and execution — ensuring every project aligns with aesthetic and technical intent.",
+      "Sustainable and well-planned urban environments focused on enhancing connectivity, accessibility, functionality, and the overall quality of urban life.",
   },
   {
     id: 3,
-    icon: <Layout className="w-8 h-8 text-silver-200" />,
-    title: "Interior Designing",
+    icon: <img src={interiorIcon} alt="Nikarc Design service icon" className="w-8 h-8 object-contain rounded-md brightness-0 invert" />,
+    title: "Interior Design",
     description:
-      "Curating refined interior environments that balance materials, lighting, and spatial flow to enhance human experience and identity.",
+      "Refined interior environments that integrate comfort, functionality, materiality, and aesthetics while reflecting the character and purpose of each space."
   },
   {
     id: 4,
-    icon: <MonitorPlay className="w-8 h-8 text-silver-200" />,
-    title: "Architectural Visualization",
+    icon: <img src={projectManagementIcon} alt="Nikarc Design service icon" className="w-8 h-8 object-contain rounded-md brightness-0 invert" />,
+    title: "Project Management",
     description:
-      "Bringing architectural ideas to life through high-fidelity 3D visualization and cinematic renderings with realistic light and material detail.",
+      "Comprehensive project coordination ensuring efficient planning, execution, and delivery with close attention to timelines, budgets, quality, and project objectives.",
   },
   {
     id: 5,
-    icon: <Trees className="w-8 h-8 text-silver-200" />,
-    title: "Landscape Designing",
+    icon: <img src={landscapeIcon} alt="Nikarc Design service icon" className="w-8 h-8 object-contain rounded-md brightness-0 invert" />,
+    title: "Landscape Design",
     description:
-      "Designing thoughtful and sustainable landscape environments that blend natural elements, terrain, and spatial experience to complement built architecture.",
+      "Context-responsive outdoor environments that seamlessly connect architecture with nature while enhancing the character, usability, and visual quality of the surrounding landscape.",
   },
   {
     id: 6,
-    icon: <HardHat className="w-8 h-8 text-silver-200" />,
-    title: "Site Supervision & Execution",
+    icon: <img src={turnkeyIcon} alt="Nikarc Design service icon" className="w-8 h-8 object-contain rounded-md brightness-0 invert" />,
+    title: "Turnkey Projects",
     description:
-      "Hands-on project execution and site supervision that carries every design from technical documentation through to precise, on-ground delivery.",
-  },
+      "End-to-end project solutions covering planning, design, procurement, execution, and final delivery, providing seamless coordination and accountability throughout the project lifecycle.",
+  }
 ];
 
 const ServicesSection = ({
